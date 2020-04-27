@@ -10,5 +10,10 @@ npm-debug.*
 web-build/
 web-report/
 
+
+Config/apikey.js
+ztest
+
 # macOS
 .DS_Store
+

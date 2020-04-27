@@ -5,7 +5,7 @@ import { Container, Header,List, Content, Card, CardItem, Thumbnail,Text,  Butto
 import TimeAgo from '../Components/time';
 
 // import CardView from "../Components/CardView"
-import { getArticles } from '../FetchNews/News';
+import { getArticles } from '../FetchData/NewsData';
 
 
 export default class NewzScreen extends React.Component {

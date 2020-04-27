@@ -1,9 +1,9 @@
-import { articles_url, _api_key, country_code,language } from '../Config/config';
+import { articles_url, news_api, country_code,language } from '../Config/config';
 
 export async function getArticles(category) {
 
     // let v = cond ?  ( ) : ()
-    // await fetch(`${articles_url}/top-headlines?language=en&apiKey=${_api_key}`)
+    // await fetch(`${articles_url}/top-headlines?language=en&apiKey=${news_api}`)
     const q = ['Fashion','Travel','Lifestyle']
     category = (category == "Top Headlines")? ("General"):(category)
     try {
@@ -12,11 +12,11 @@ export async function getArticles(category) {
              
             ( ( category=='International' )?
             
-              ( await fetch(`${articles_url}/everything?language=en&sortBy=publishedAt&domains=nytimes.com,bbc.com,cnn.com&apiKey=${_api_key}`) ):     
+              ( await fetch(`${articles_url}/everything?language=en&sortBy=publishedAt&domains=nytimes.com,bbc.com,cnn.com&apiKey=${news_api}`) ):     
        
-              ( await fetch(`${articles_url}/everything?language=en&q=${category}&apiKey=${_api_key}`) ) 
+              ( await fetch(`${articles_url}/everything?language=en&q=${category}&apiKey=${news_api}`) ) 
             ):
-              ( await fetch(`${articles_url}/top-headlines?country=${country_code}&category=${category}&apiKey=${_api_key}`))
+              ( await fetch(`${articles_url}/top-headlines?country=${country_code}&category=${category}&apiKey=${news_api}`))
            
     
         console.log(articles)
@@ -29,3 +29,6 @@ export async function getArticles(category) {
         throw error;
     }
 }
+
+
+

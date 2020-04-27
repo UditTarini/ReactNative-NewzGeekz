@@ -23,35 +23,35 @@ export default class HomeScreen extends React.Component{
 
     render(){
       
-      const elements = new Array();
-      elements[0] = new Array ( "Top Headlines", require("../assets/icons/trending.png") );
-      elements[1] = new Array ( "International", require("../assets/icons/businessman.png") );
-      elements[2] = new Array ( "Technology", require("../assets/icons/automation.png") );
-      elements[3] = new Array ( "Business", require("../assets/icons/teamwork.png") );
-      elements[4] = new Array ( "Sports", require("../assets/icons/soccer.png") );
-      elements[5] = new Array ( "Science", require("../assets/icons/molecule.png") );
-      elements[6] = new Array ( "Entertainment", require("../assets/icons/theater.png") );
-      elements[7] = new Array ( "Fashion", require("../assets/icons/designers.png") );
-      elements[8] = new Array ( "Travel", require("../assets/icons/globe.png") );
-      elements[9] = new Array ( "Lifestyle", require("../assets/icons/healthy.png") );
+      const topics = new Array();
+      topics[0] = new Array ( "Top Headlines", require("../assets/icons/trending.png") );
+      topics[1] = new Array ( "International", require("../assets/icons/businessman.png") );
+      topics[2] = new Array ( "Technology", require("../assets/icons/automation.png") );
+      topics[3] = new Array ( "Business", require("../assets/icons/teamwork.png") );
+      topics[4] = new Array ( "Sports", require("../assets/icons/soccer.png") );
+      topics[5] = new Array ( "Science", require("../assets/icons/molecule.png") );
+      topics[6] = new Array ( "Entertainment", require("../assets/icons/theater.png") );
+      topics[7] = new Array ( "Fashion", require("../assets/icons/designers.png") );
+      topics[8] = new Array ( "Travel", require("../assets/icons/globe.png") );
+      topics[9] = new Array ( "Lifestyle", require("../assets/icons/healthy.png") );
     
       
       
-     // const elements = ['General', 'Fashion', 'Travel'];
+     // const topics = ['General', 'Fashion', 'Travel'];
       
       const items = []
       
-      for (let i=0; i<elements.length; i++ ) {
+      for (let i=0; i<topics.length; i++ ) {
             
             items.push(
               <TouchableOpacity
               style={styles.TopicsButton}
-              onPress={ () => { this.setCatagory(elements[i][0]) }}  > 
+              onPress={ () => { this.setCatagory(topics[i][0]) }}  > 
                 <Image 
                   style={styles.TopicsIcon}
-                  source={elements[i][1]}/>
+                  source={topics[i][1]}/>
                  
-                <Text style={styles.TopicsButtontext}>{elements[i][0]}</Text>
+                <Text style={styles.TopicsButtontext}>{topics[i][0]}</Text>
               </TouchableOpacity>)
              }
             

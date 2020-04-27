@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet,TouchableOpacity, TextInput } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 import { SearchBar } from 'react-native-elements';
+import WeatherScreen from '../Screens/WeatherScreen'
 // import { weatherConditions } from '../utilities/weatherConditions';
 
-const weatherConditions = {
+export const weatherConditions = {
   Rain: {
     color: '#005BEA',
     title: 'Raining',
@@ -56,47 +57,72 @@ const weatherConditions = {
     icon: 'weather-fog'
   }
 };
-const Weather = ({ weather, temperature, location, humidity, detail }) => {
+
+export default class Weather extends React.Component{
+  constructor(props) {
+    super(props);
+    this.weather = props.weather,
+    this.temperature= props.temperature,
+    this.location = props. location,
+    this.humidity = props.humidity
+
+    this.state={
+     loc : null
+    }
+   }
+
+  //  ItemPress(item){
+  //    this._b.loc()
+  //  }
+
+  render(){
+  
     
   return (
     <View
       style={[
         styles.weatherContainer,
-        { backgroundColor: weatherConditions[weather].color }
+        { backgroundColor: weatherConditions[this.weather].color }
       ]}
     >
+     <View>
     
+
+      </View>
       <View style={styles.headerContainer}>
-        <Text style={styles.tempText}>Temp: {temperature}˚</Text>
+        <Text style={styles.tempText}>Temp: {this.temperature}˚</Text>
       </View>
       <View style={styles.headerContainer}>
         <MaterialCommunityIcons
           size={100}
-          name={weatherConditions[weather].icon}
+          name={weatherConditions[this.weather].icon}
           color={'#fff'}
         />
       </View>
       <View style={styles.headerContainer}>
-        <Text style={styles.title}>{location}</Text>
+        <Text style={styles.title}>{this.location}</Text>
         {/* <Text style={styles.time}>{time}</Text> */}
       </View>
       <View style={styles.bodyContainer}>
-        <Text style={styles.title}>{weatherConditions[weather].title}</Text>
+        <Text style={styles.title}>{weatherConditions[this.weather].title}</Text>
         <Text style={styles.subtitle}>
-          {weatherConditions[weather].subtitle}
+          {weatherConditions[this.weather].subtitle}
         </Text>
         <Text style={styles.subtitle}>
-          Humidity: {humidity}%
+          Humidity: {this.humidity}%
         </Text>
       </View>
     </View>
   );
+    }
 };
 
-Weather.propTypes = {
-  temperature: PropTypes.number.isRequired,
-  weather: PropTypes.string
-};
+
+// Weather.propTypes = {
+//   temperature: PropTypes.number.isRequired,
+//   weather: PropTypes.string
+// };
+
 
 const styles = StyleSheet.create({
   weatherContainer: {
@@ -151,4 +177,3 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Weather;
