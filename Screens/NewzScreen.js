@@ -33,7 +33,7 @@ export default class NewzScreen extends React.Component {
 
      
       UNSAFE_componentWillMount() {
-        const catagory = this.props.navigation.getParam("catagory", null);
+        const catagory = this.props.navigation.getParam("query", null);
         // const  catagory = this.state.catagory
         getArticles(catagory).then(data => {
           this.setState({

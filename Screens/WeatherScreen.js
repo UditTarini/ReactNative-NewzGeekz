@@ -69,19 +69,27 @@ export default class WeatherScreen extends React.Component {
       })
      }
 
-     locn = (loc) =>{
-       fetchWeather(null,null,loc)
+    locn = (loc) => {
+       
+       fetchWeather(undefined,undefined,loc)
         .then(resJson => {
           console.log(resJson)
-          this.setState({
-               isLoading: false,
-               temperature: resJson.main.temp,
-               weather: resJson.weather[0].main,
-               location: resJson.name,
-               humidity: resJson.main.humidity,          
-               loc:null
+          if (resJson.cod == '404') {
+            alert(resJson.message)
+          }
             
-          });
+          else {
+            this.setState({
+              isLoading: false,
+              temperature: resJson.main.temp,
+              weather: resJson.weather[0].main,
+              location: resJson.name,
+              humidity: resJson.main.humidity,
+              loc: null
+            
+            
+            });
+          }
         })
         .catch(error => console.log(error));
     };

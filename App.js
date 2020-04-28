@@ -14,14 +14,10 @@ import NewspaperScreen from "./Screens/NewspaperScreen"
 import WeatherScreen from "./Screens/WeatherScreen"
 
 
-
-
-
-
 const StackNavigator = createStackNavigator(
   {
     HomeScreen: { screen: HomeScreen},
-    NewzGeekz: { screen: NewzScreen },
+    NewzScreen: { screen: NewzScreen },
     ViewScreen: { screen: ViewScreen},
    
 
@@ -71,7 +67,10 @@ const WeatherNav = createStackNavigator(
 )
 
 const NewspaperNav = createStackNavigator(
-  { Newspaer: { screen: NewspaperScreen},
+  {
+    Newspaper: { screen: NewspaperScreen },
+    NewzScreen: { screen: NewzScreen },
+    ViewScreen: { screen: ViewScreen},
   },{  
     headerLayoutPreset: 'center',
    

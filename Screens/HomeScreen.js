@@ -18,7 +18,7 @@ export default class HomeScreen extends React.Component{
       
       await this.setState({catagory:cat})
       
-      this.props.navigation.navigate("NewzGeekz",{catagory:this.state.catagory})
+      this.props.navigation.navigate("NewzScreen",{query:this.state.catagory})
       }
 
     render(){
@@ -39,11 +39,11 @@ export default class HomeScreen extends React.Component{
       
      // const topics = ['General', 'Fashion', 'Travel'];
       
-      const items = []
+      const topicsArr = []
       
       for (let i=0; i<topics.length; i++ ) {
             
-            items.push(
+          topicsArr.push(
               <TouchableOpacity
               style={styles.TopicsButton}
               onPress={ () => { this.setCatagory(topics[i][0]) }}  > 
@@ -66,7 +66,7 @@ export default class HomeScreen extends React.Component{
             
             <SafeAreaView style={styles.TopicsContainer}>
             
-            {items}
+            {topicsArr}
          
             </SafeAreaView>
       
