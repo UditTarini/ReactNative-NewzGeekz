@@ -6,6 +6,7 @@ import TimeAgo from '../Components/time';
 
 // import CardView from "../Components/CardView"
 import { getArticles } from '../FetchData/NewsData';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 export default class NewzScreen extends React.Component {
@@ -105,10 +106,10 @@ export default class NewzScreen extends React.Component {
 
     return (  
        
-        <SafeAreaView>
+        <ScrollView>
      
           {view}
-        </SafeAreaView>
+        </ScrollView>
       
      
     
