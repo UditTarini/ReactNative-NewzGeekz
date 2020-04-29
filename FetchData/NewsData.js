@@ -8,7 +8,7 @@ export async function getArticles(query) {
 
     const cat = ['Fashion', 'Travel', 'Lifestyle']
     const cat2 = ['','Sports','Business','Science','Entertainment','Technology','General']
-    const paper = ['news18.com','indianexpress.com','asianage.com','hindustantimes.com']
+    const paper = ['news18.com','indianexpress.com','asianage.com','hindustantimes.com','wired.com']
     query = (query == "Top Headlines") ? ("General") : (query)
   
   

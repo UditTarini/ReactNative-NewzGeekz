@@ -36,21 +36,21 @@ export default class NewspaperScreen extends React.Component {
   
     newspaper[6] = new Array("AL Jazeera","al-jazeera-english", require("../assets/NewsIcons/Alzazeera.jpg"),"IN");
     newspaper[7] = new Array("BBC","bbc-news", require("../assets/NewsIcons/BBC.png"),"IN");
-    newspaper[8] = new Array("Reuters","reuters", require("../assets/NewsIcons/reuters.png"),"IN");
+    newspaper[8] = new Array("Reuters","reuters", require("../assets/NewsIcons/reuters.jpg"),"IN");
     newspaper[9] = new Array("Wall Street Journal","the-wall-street-journal", require("../assets/NewsIcons/WSJ.jpg"),"IN");
     newspaper[10] = new Array("Buzzfeed","buzzfeed", require("../assets/NewsIcons/BuzzFeed.png"),"IN");
          
    
     newspaper[11] = new Array("Techcrunch","techcrunch", require("../assets/NewsIcons/TechCrunch.png"),"TC");
     newspaper[12] = new Array("The Verge","the-verge", require("../assets/NewsIcons/TheVerge.png"),"TC");
-    newspaper[13] = new Array("Engadget","engadget", require("../assets/NewsIcons/Gsm.png"),"TC");
-    newspaper[14] = new Array("Techradar","techradar", require("../assets/NewsIcons/wired.png"),"TC");
+    newspaper[13] = new Array("GSM Arena","gsmarena.com", require("../assets/NewsIcons/Gsm.png"),"TC");
+    newspaper[14] = new Array("Wired","wired.com", require("../assets/NewsIcons/wired.png"),"TC");
     newspaper[15] = new Array("The Next Web","the-next-web", require("../assets/NewsIcons/TNW.png"),"TC");
          
    
     newspaper[16] = new Array("Bloomberg","bloomberg", require("../assets/NewsIcons/bloom.png"),"FC");
-    newspaper[17] = new Array("Business Insider","business-insider", require("../assets/NewsIcons/moneycontrol.jpg"),"FC");
-    newspaper[18] = new Array("CNN", "cnn", require("../assets/NewsIcons/ET.jpg"),"FC");
+    newspaper[17] = new Array("Business Insider","business-insider", require("../assets/NewsIcons/bi.jpg"),"FC");
+    newspaper[18] = new Array("CNBC", "cnbc", require("../assets/NewsIcons/cnbc.jpg"),"FC");
         
       
     const NationalArr = []
