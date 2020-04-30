@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { WebView } from 'react-native-webview';
 import {Text} from 'react-native'
-import {Icon} from 'native-base'
+import {Icon, Content} from 'native-base'
 import { ScrollView } from 'react-native-gesture-handler';
 export default class ViewScreen extends Component {
  
@@ -28,16 +28,16 @@ export default class ViewScreen extends Component {
     const url = this.props.navigation.getParam("url", null);
     if( url != null ) {
       
-    return (
+      return (
      
       <WebView 
       source={{uri:url}} style={{flex: 1}}
-      // javaScriptEnabled={true}
-      // domStorageEnabled={true}
+      javaScriptEnabled={true}
+      domStorageEnabled={true}
       startInLoadingState
       scalesPageToFit
         />
-      
+     
     );
       } else {
         return(

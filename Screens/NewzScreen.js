@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet,Alert,TouchableOpacity , ActivityIndicator,  Image, View, SafeAreaView } from 'react-native';
+import { StyleSheet,Alert,TouchableOpacity , Dimensions ,ActivityIndicator,  Image, View, SafeAreaView } from 'react-native';
 import { Container, Header,List, Content, Card, CardItem, Thumbnail,Text,  Button, Icon, Left, Body, Right } from 'native-base';
 import Tts from 'react-native-tts';
 import * as Speech from 'expo-speech';
@@ -29,25 +29,24 @@ export default class NewzScreen extends React.Component {
         this.state = {
           isLoading: true,
           data: null,
+          playStatus: 'Play'
         }
-        // const titles = []
+       
       }  
 
     
       UNSAFE_componentWillMount() {
         const catagory = this.props.navigation.getParam("query", null);
-        // const  catagory = this.state.catagory
-        global.titles = [] 
-        global.titleC = 0
+      
+        global.titles = []
+        global.screenHeight = Math.round(Dimensions.get('window').height) - 80;
+        console.log(screenHeight)
         getArticles(catagory).then(data => {
           
           for (let i = 0; i < data.length; i++){
             // console.log(data[i].title)
             titles.push(data[i].title)
-          }
-          
-       
-          this.setState({
+          }this.setState({
             isLoading: false,
             data: data,
             
@@ -59,44 +58,63 @@ export default class NewzScreen extends React.Component {
         )
       }
       
-  // readArticle = (article) => {
-  //       i += 1
-  //       ( i % 2 != 0 )? 
-  //         (Tts.speak(article))
-  //         :(Tts.stop())
-  //     }
+  playNews = () => {
+    if(this.state.playStatus == "Play"){
+      for(let i = 0; i < titles.length; i++)
+       { 
+        this.setState({playStatus: "Pause"})
+        Speech.speak(titles[i], { pitch: 1, rate: 0.90 })
+         
+       }
+     }
+      else{
+       Speech.stop()
+       this.setState({playStatus: "Play" })
+      }
+  }
+  
 
     
   
   render() {
- 
+    
     let view = this.state.isLoading ? (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <ActivityIndicator animating={this.state.isLoading} color="#00f0ff" />
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',marginTop: screenHeight/2 }}>
+        <ActivityIndicator
+          animating={this.state.isLoading}
+          style = {styles.activityIndicator}
+          />
           <Text style={{marginTop: 10}} children="Please Wait.." />
         </View>
     ) : (
+     <View style={styles.Container}>
+      <Card >
+        <CardItem >
+          <TouchableOpacity
+            onPress={() => { this.playNews() }}>
+                
+          <Icon active name={this.state.playStatus.toLowerCase()}
+                style={{fontSize: 23, color: 'red'}}/>
+          </TouchableOpacity>
+         
+          <Text>{this.state.playStatus} Your News...</Text>
+          
+         </CardItem>
+       </Card>
+   
         
         <List
           dataArray={this.state.data}
-      
           renderRow={(item) => { 
-              
-              return (
-
-                 
-           <TouchableOpacity activeOpacity={0.7}
-                    
-                  onPress={() => {
+            return (
+              <TouchableOpacity activeOpacity={0.7}
+                     onPress={() => {
                      Speech.stop() 
                      this.props.navigation.navigate("ViewScreen",{url: item.url}); 
-                    }}
-                      >
-                   <Card  >
-  
-                     <CardItem >
+                    }} >
+                   <Card>
+                    <CardItem >
                       <Left>
-        
                         <Body>
                           <Text numberOfLines={2}>{item.title}</Text>
  
@@ -117,45 +135,21 @@ export default class NewzScreen extends React.Component {
                     </Right>
                   </CardItem>
                    </Card>
-            </TouchableOpacity>
+               </TouchableOpacity>
+                 
                   )
           }}
           keyExtractor={(item, index) => index.toString()} />
-      )
+          </View>
+          )
      
 
     return (  
        
-        <ScrollView>
-        <TouchableOpacity
-            onPress={
-            () => {
-         
-            titleC++ 
-  
-            if(titleC % 2 != 0){
-              
-             for(let i = 0; i < titles.length; i++)
-             {
-               Speech.speak(titles[i], {
-                 pitch: 1, rate: 0.90
-               
-               })
-               
-             }      
-              
-             }
-             else{
-              Speech.stop()
-              
-             }
-          } }>
-         <Text>touch</Text>
-        </TouchableOpacity>
+        <SafeAreaView >
         
-    
           {view}
-        </ScrollView>
+        </SafeAreaView>
       
      
     
@@ -164,14 +158,26 @@ export default class NewzScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  shadow: {
-    shadowOffset:{height: 2},
-    elevation: 2,
-    shadowColor: 'black',
-    shadowOpacity: 0.2,
+  Container: {
    
+    backgroundColor: "white",
     
   },
+ 
+  playNews: {
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+    shadowColor: "black",
+    elevation:2
+    
+  },
+  activityIndicator: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 80,
+    color:"#00f0ff" 
+  }
 
 })
   
