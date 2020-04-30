@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text,TouchableOpacity, Image,ScrollView,FlatList, View, SafeAreaView, NativeModules } from 'react-native';
-import { Container, Header,Title, Content,List, Card, CardItem, Thumbnail,  Button, Icon, Left, Body, Right } from 'native-base';
+;
 import { render } from 'react-dom';
 
 

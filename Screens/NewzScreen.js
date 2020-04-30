@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet,Alert,TouchableOpacity , ActivityIndicator,  Image, View, SafeAreaView } from 'react-native';
 import { Container, Header,List, Content, Card, CardItem, Thumbnail,Text,  Button, Icon, Left, Body, Right } from 'native-base';
-
+import Tts from 'react-native-tts';
+import * as Speech from 'expo-speech';
 import TimeAgo from '../Components/time';
 
 // import CardView from "../Components/CardView"
@@ -28,18 +29,28 @@ export default class NewzScreen extends React.Component {
         this.state = {
           isLoading: true,
           data: null,
-          
         }
+        // const titles = []
       }  
 
-     
+    
       UNSAFE_componentWillMount() {
         const catagory = this.props.navigation.getParam("query", null);
         // const  catagory = this.state.catagory
+        global.titles = [] 
+        global.titleC = 0
         getArticles(catagory).then(data => {
+          
+          for (let i = 0; i < data.length; i++){
+            // console.log(data[i].title)
+            titles.push(data[i].title)
+          }
+          
+       
           this.setState({
             isLoading: false,
-            data: data
+            data: data,
+            
           });
           
         }, error => {
@@ -47,28 +58,37 @@ export default class NewzScreen extends React.Component {
         }
         )
       }
-
       
+  // readArticle = (article) => {
+  //       i += 1
+  //       ( i % 2 != 0 )? 
+  //         (Tts.speak(article))
+  //         :(Tts.stop())
+  //     }
 
     
   
   render() {
-    
+ 
     let view = this.state.isLoading ? (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <ActivityIndicator animating={this.state.isLoading} color="#00f0ff" />
           <Text style={{marginTop: 10}} children="Please Wait.." />
         </View>
-      ): (
+    ) : (
+        
         <List
           dataArray={this.state.data}
-          renderRow={(item) => {              
+      
+          renderRow={(item) => { 
+              
               return (
 
                  
            <TouchableOpacity activeOpacity={0.7}
                     
-                    onPress={() => {
+                  onPress={() => {
+                     Speech.stop() 
                      this.props.navigation.navigate("ViewScreen",{url: item.url}); 
                     }}
                       >
@@ -102,12 +122,38 @@ export default class NewzScreen extends React.Component {
           }}
           keyExtractor={(item, index) => index.toString()} />
       )
-
+     
 
     return (  
        
         <ScrollView>
-     
+        <TouchableOpacity
+            onPress={
+            () => {
+         
+            titleC++ 
+  
+            if(titleC % 2 != 0){
+              
+             for(let i = 0; i < titles.length; i++)
+             {
+               Speech.speak(titles[i], {
+                 pitch: 1, rate: 0.90
+               
+               })
+               
+             }      
+              
+             }
+             else{
+              Speech.stop()
+              
+             }
+          } }>
+         <Text>touch</Text>
+        </TouchableOpacity>
+        
+    
           {view}
         </ScrollView>
       

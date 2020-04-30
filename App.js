@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet,StatusBar, Text, Image,ScrollView, View, SafeAreaView } from 'react-native';
-import { Container, Header,Title, Content, Card, CardItem, Thumbnail,  Button, Left, Body, Right } from 'native-base';
+
 import Icon from 'react-native-vector-icons/Ionicons';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';

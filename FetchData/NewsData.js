@@ -14,8 +14,7 @@ export async function getArticles(query) {
   
   
   
-  try {
-    console.log(query)    
+  try {  
     let articles = ""
     if (query == 'International'){
       articles = await fetch(`${articles_url}/everything?language=en&sortBy=publishedAt&domains=nytimes.com,bbc.com,aljazeera.com&apiKey=${news_api}`)
@@ -54,7 +53,7 @@ export async function getArticles(query) {
     
              // await fetch(`${articles_url}/top-headlines?sources=${query}&apiKey=${news_api}`)
              // await fetch(`${articles_url}/everyhting?language=en&domains=${query}&apiKey=${news_api}`)
-        console.log(articles)
+        
         let result = await articles.json();
         
         articles = null;
