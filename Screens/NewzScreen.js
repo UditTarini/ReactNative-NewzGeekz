@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyleSheet,Alert,TouchableOpacity , Dimensions ,ActivityIndicator,  Image, View, SafeAreaView } from 'react-native';
-import { Container, Header,List, Content, Card, CardItem, Thumbnail,Text,  Button, Icon, Left, Body, Right } from 'native-base';
+import { StyleSheet,Alert,TouchableOpacity , Dimensions ,ActivityIndicator,Text,  Image, View, SafeAreaView } from 'react-native';
+import { Container, Header,List, Content, Card, CardItem, Thumbnail,  Button, Icon, Left, Body, Right } from 'native-base';
 import Tts from 'react-native-tts';
 import * as Speech from 'expo-speech';
 import TimeAgo from '../Components/time';
+import uuid from 'react-native-uuid';
 
-// import CardView from "../Components/CardView"
 import { getArticles } from '../FetchData/NewsData';
 import { ScrollView } from 'react-native-gesture-handler';
 
@@ -40,7 +40,7 @@ export default class NewzScreen extends React.Component {
       
         global.titles = []
         global.screenHeight = Math.round(Dimensions.get('window').height) - 80;
-        console.log(screenHeight)
+       
         getArticles(catagory).then(data => {
           
           for (let i = 0; i < data.length; i++){
@@ -81,6 +81,7 @@ export default class NewzScreen extends React.Component {
     let view = this.state.isLoading ? (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',marginTop: screenHeight/2 }}>
         <ActivityIndicator
+          color="#00f0ff" 
           animating={this.state.isLoading}
           style = {styles.activityIndicator}
           />
@@ -93,7 +94,7 @@ export default class NewzScreen extends React.Component {
           <TouchableOpacity
             onPress={() => { this.playNews() }}>
                 
-          <Icon active name={this.state.playStatus.toLowerCase()}
+          <Icon  name={this.state.playStatus.toLowerCase()}
                 style={{fontSize: 23, color: 'red'}}/>
           </TouchableOpacity>
          
@@ -104,6 +105,7 @@ export default class NewzScreen extends React.Component {
    
         
         <List
+          key={ uuid.v1() }
           dataArray={this.state.data}
           renderRow={(item) => { 
             return (
@@ -127,7 +129,7 @@ export default class NewzScreen extends React.Component {
                    </CardItem>
                      <CardItem>
                     <Left >
-                        <Text style={{fontSize:12}} note>{item.source.name}</Text>
+                        <Text style={{fontSize:12 ,color:"grey"}} >{item.source.name}</Text>
                     </Left>
 
                     <Right  >
@@ -136,10 +138,10 @@ export default class NewzScreen extends React.Component {
                   </CardItem>
                    </Card>
                </TouchableOpacity>
-                 
-                  )
-          }}
-          keyExtractor={(item, index) => index.toString()} />
+            )
+            }}
+            keyExtractor={(item, index)=>index.toString()}
+          />
           </View>
           )
      
@@ -176,7 +178,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: 80,
-    color:"#00f0ff" 
+    
   }
 
 })

@@ -14,10 +14,9 @@ export default class ViewScreen extends Component {
      color='#ffffff' 
      style={{paddingLeft: 20,fontSize: 20 }} 
      onPress={ () => { navigation.goBack() }} />,
-
-      title: 'NewzGeekz',
-      headerStyle: {height:40},
-      headerTitleStyle: { 
+     title: 'NewzGeekz',
+     headerStyle: {height:40},
+     headerTitleStyle: { 
         color: "#000",
         alignSelf: 'center',
         fontSize: 12

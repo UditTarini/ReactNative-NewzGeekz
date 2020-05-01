@@ -23,17 +23,17 @@ export default class WeatherScreen extends React.Component {
     weather: null,
     location: null,
     humidity: null,
-      loc: null,
+      loc: "",
       isVisible: true
     
     }
   }
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.keyboardWillShowSub = Keyboard.addListener('keyboardDidShow', this.keyboardWillShow)
     this.keyboardWillHideSub = Keyboard.addListener('keyboardDidHide', this.keyboardWillHide)
   }
 
-  componentWillUnmount() {
+  UNSAFE_componentWillUnmount() {
     this.keyboardWillShowSub.remove()
     this.keyboardWillHideSub.remove()
   }

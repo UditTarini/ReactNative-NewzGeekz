@@ -23,11 +23,12 @@ const StackNavigator = createStackNavigator(
 
   },
   {  
-    headerLayoutPreset: 'center',
+    
    
     defaultNavigationOptions: {
       headerTintColor: "#fff",
-      title:"NewzGeekz",
+      title: "NewzGeekz",
+      headerTitleAlign: 'center',
       headerStyle: {
         backgroundColor: "#fff"
       },
@@ -46,9 +47,10 @@ const StackNavigator = createStackNavigator(
 const WeatherNav = createStackNavigator(
   { Weather: { screen: WeatherScreen},
   },{  
-    headerLayoutPreset: 'center',
+    
    
     defaultNavigationOptions: {
+      headerTitleAlign: 'center',
       headerTintColor: "#fff",
       title:"NewzGeekz",
         headerStyle: {

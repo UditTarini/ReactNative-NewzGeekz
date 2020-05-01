@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text,TouchableOpacity, Image,ScrollView,FlatList, View, SafeAreaView, NativeModules } from 'react-native';
-;
+import { StyleSheet, Text,TouchableOpacity, Image,ScrollView,FlatList, View, SafeAreaView, NativeModules } from 'react-native'
 import { render } from 'react-dom';
+import uuid from 'react-native-uuid';
+
 
 
 export default class HomeScreen extends React.Component{
@@ -44,7 +45,8 @@ export default class HomeScreen extends React.Component{
       for (let i=0; i<topics.length; i++ ) {
             
           topicsArr.push(
-              <TouchableOpacity
+            <TouchableOpacity
+              key={ uuid.v1() }
               style={styles.TopicsButton}
               onPress={ () => { this.setCatagory(topics[i][0]) }}  > 
                 <Image 

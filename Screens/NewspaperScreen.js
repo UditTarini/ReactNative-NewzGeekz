@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Image,ScrollView,FlatList, View, SafeAreaView, NativeModules } from 'react-native';
-import {Text} from 'native-base'
+import { StyleSheet, TouchableOpacity,Text, Image,ScrollView,FlatList, View, SafeAreaView, NativeModules } from 'react-native';
+
 import { block } from 'react-native-reanimated';
+import uuid from 'react-native-uuid';
 
 
 
@@ -57,7 +58,7 @@ export default class NewspaperScreen extends React.Component {
     const InternationalArr = []
     const TechArr = []
     const FinanceArr = []
-
+    
 
       
     for (let i = 0; i < newspaper.length; i++) {
@@ -68,6 +69,7 @@ export default class NewspaperScreen extends React.Component {
           NationalArr.push(
                 
             <TouchableOpacity
+              key={ uuid.v1() }
               style={styles.newspaperButton}
               onPress={() => { this.setSource(newspaper[i][1]) }}  >
               <Image
@@ -81,6 +83,7 @@ export default class NewspaperScreen extends React.Component {
           InternationalArr.push(
                 
             <TouchableOpacity
+              key={ uuid.v1() }
               style={styles.newspaperButton}
               onPress={() => { this.setSource(newspaper[i][1]) }}  >
               <Image
@@ -94,6 +97,7 @@ export default class NewspaperScreen extends React.Component {
           TechArr.push(
                 
             <TouchableOpacity
+              key={ uuid.v1() }
               style={styles.newspaperButton}
               onPress={() => { this.setSource(newspaper[i][1]) }}  >
               <Image
@@ -107,6 +111,7 @@ export default class NewspaperScreen extends React.Component {
           FinanceArr.push(
                 
             <TouchableOpacity
+              key={ uuid.v1() }
               style={styles.newspaperButton}
               onPress={() => { this.setSource(newspaper[i][1]) }}  >
               <Image
@@ -132,7 +137,7 @@ export default class NewspaperScreen extends React.Component {
                    <Text style={styles.TextStyle}>Newspaper</Text>
                </View>
 
-               <Text style={{ fontSize: 14, paddingLeft: 7, padding: 5 }} note>National</Text>           
+               <Text style={styles.subTexStyle} >National</Text>           
                
                <SafeAreaView style={styles.newspaperContainer}>
                
@@ -140,7 +145,7 @@ export default class NewspaperScreen extends React.Component {
             
                </SafeAreaView>
                
-               <Text style={{ fontSize: 14, paddingLeft: 7, padding: 5 }} note>International</Text>           
+               <Text style={styles.subTexStyle} >International</Text>           
                
                <SafeAreaView style={styles.newspaperContainer}>
                
@@ -148,7 +153,7 @@ export default class NewspaperScreen extends React.Component {
             
                </SafeAreaView>
                
-               <Text style={{ fontSize: 14, paddingLeft: 7, padding: 5 }} note>Tech</Text>           
+               <Text style={styles.subTexStyle} >Tech</Text>           
                
                <SafeAreaView style={styles.newspaperContainer}>
                
@@ -156,7 +161,7 @@ export default class NewspaperScreen extends React.Component {
             
                </SafeAreaView>
                
-               <Text style={{ fontSize: 14, paddingLeft: 7, padding: 5 }} note>Finance</Text>           
+               <Text style={styles.subTexStyle} >Finance</Text>           
                
                <SafeAreaView style={styles.newspaperContainer}>
                
@@ -217,7 +222,11 @@ export default class NewspaperScreen extends React.Component {
             fontSize:20,
             fontWeight:"500",
             padding: 7,
-            
-           
+        },
+        subTexStyle: {
+          fontSize: 14,
+          paddingLeft: 7,
+          padding: 5,
+          color:"grey"
          }
    })
