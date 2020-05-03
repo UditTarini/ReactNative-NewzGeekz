@@ -3,7 +3,7 @@ import { StyleSheet,Alert,TouchableOpacity , Dimensions ,Linking,ActivityIndicat
 import { Container, Header,List, Content, Card, CardItem, Thumbnail,  Button, Icon, Left, Body, Right } from 'native-base';
 import Tts from 'react-native-tts';
 import * as Speech from 'expo-speech';
-import TimeAgo from '../Components/time';
+import TimeAgo from '../Utils/time';
 import uuid from 'react-native-uuid';
 
 import { getArticles } from '../FetchData/NewsData';
@@ -73,14 +73,7 @@ export default class NewzScreen extends React.Component {
       }
   }
   
-  // handleShare = () => {
-  //   const {url, title} = this.data;
-  //   message = `${title}\n\nRead More @${url}\n\nShared via NewzGeekz  App`;
-  //   return Share.share(
-  //       {title, message, url: message},
-  //       {dialogTitle:`Share ${title}`}
-  //   );
-  // }
+  
 
     
   
@@ -135,10 +128,10 @@ export default class NewzScreen extends React.Component {
                           const { url, title } = item;
                          
                             let message = `${title}\n\n Click To Know More\n ${url}\n\nShared via *NewzGeekz*  App`;
-                          return Share.share(
+                            return Share.share(
                               {title, message, url: message},
                               {dialogTitle:`Share ${title}`}
-                          );
+                          )
                         }}  >
                             <Icon name="md-share" style={{color: 'black', fontSize: 18}}/>
                       </TouchableOpacity>

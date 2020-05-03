@@ -4,7 +4,7 @@ import { StyleSheet, Text, View,TextInput,Image,Keyboard, TouchableOpacity } fro
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Constants from 'expo'
-import {weatherConditions } from '../Components/weather'
+import {weatherConditions } from '../Utils/weather'
 import { fetchWeather } from '../FetchData/WeatherData';
 import { SearchBar } from 'react-native-elements';
 

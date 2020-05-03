@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React  from 'react';
 import { WebView } from 'react-native-webview';
 import {Text} from 'react-native'
 import {Icon, Content} from 'native-base'
 import { ScrollView } from 'react-native-gesture-handler';
-export default class ViewScreen extends Component {
+export default class ViewScreen extends React.Component {
  
   
     static navigationOptions = 

@@ -1,10 +1,14 @@
 import React from 'react';
-import { StyleSheet,StatusBar, Text, Image,ScrollView, View, SafeAreaView } from 'react-native';
+import { StyleSheet,StatusBar,Button,AsyncStorage, Text, Image,ScrollView, View, SafeAreaView } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
+
+
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+import { createDrawerNavigator } from 'react-navigation-drawer';
+import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 
 import NewzScreen from "./Screens/NewzScreen"
 import ViewScreen from "./Screens/ViewScreen"
@@ -13,13 +17,15 @@ import HomeScreen from "./Screens/HomeScreen"
 import NewspaperScreen from "./Screens/NewspaperScreen"
 import WeatherScreen from "./Screens/WeatherScreen"
 
+import SettingsScreen from "./Screens/SettingsScreen"
 
 const StackNavigator = createStackNavigator(
   {
+  
     HomeScreen: { screen: HomeScreen},
     NewzScreen: { screen: NewzScreen },
     ViewScreen: { screen: ViewScreen},
-   
+    
 
   },
   {  
@@ -39,8 +45,7 @@ const StackNavigator = createStackNavigator(
       },
     
     
-    
-  }
+      }
 }
 )
 
@@ -92,6 +97,32 @@ const NewspaperNav = createStackNavigator(
     }
   }
 )
+const SettingsNav = createStackNavigator(
+  {
+    SettingScreen: { screen: SettingsScreen },
+    ViewScreen: { screen: ViewScreen}
+ 
+  },{  
+    headerLayoutPreset: 'center',
+   
+    defaultNavigationOptions: {
+      headerTintColor: "#fff",
+      title:"NewzGeekz",
+      headerStyle: {
+        backgroundColor: "#fff"
+      },
+      headerTitleStyle: {
+        color: "#000",
+        alignSelf: 'center',
+        
+      },
+    
+    
+    }
+  }
+)
+
+
 
 const TabNavigator = createMaterialBottomTabNavigator(
   {
@@ -135,6 +166,20 @@ const TabNavigator = createMaterialBottomTabNavigator(
        
       }
     },
+    Settings: {
+      screen: SettingsNav,
+      navigationOptions: {
+        title:"Settngs",
+        tabBarIcon: ({ tintColor }) => (
+          <View>
+            <Icon style={[{color: tintColor}]} size={25} name={'ios-settings'} />
+          </View>
+        ),
+     
+       
+      }
+      
+    }
 
 
   },
@@ -149,6 +194,15 @@ const TabNavigator = createMaterialBottomTabNavigator(
 //create app container
 const App = createAppContainer(TabNavigator);
 export default App;
+// export default () => {
+//   let theme = useColorScheme();
+
+//   return (
+//     <AppearanceProvider>
+//       <App theme={'dark'} />
+//     </AppearanceProvider>
+//   )
+// }
 
 
   

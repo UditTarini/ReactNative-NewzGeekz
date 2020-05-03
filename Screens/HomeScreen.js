@@ -1,27 +1,54 @@
 import React from 'react';
-import { StyleSheet, Text,TouchableOpacity, Image,ScrollView,FlatList, View, SafeAreaView, NativeModules } from 'react-native'
+import { StyleSheet, Text,AsyncStorage,TouchableOpacity, Image,ScrollView,FlatList, View, SafeAreaView, NativeModules } from 'react-native'
 import { render } from 'react-dom';
 import uuid from 'react-native-uuid';
+import { ThemeColors, useTheme } from 'react-navigation';
 
-
-
-export default class HomeScreen extends React.Component{
+export default class HomeScreen extends React.Component {
     
     
-    constructor(props){
-            super(props)
-            this.state={
-                catagory:" "
-            }
+  constructor(props) {
+    super(props)
+     
+    this.toggle = props.toggle;
+      
+    this.state = {
+      catagory: " ",
+              
     }
+  }
+  
+  componentWillMount() {
+    this.retrieveData()
+  }
+  
+  retrieveData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('value');
+      if (value !== null) {
+        // We have data!!
+        console.log(value);
+      }
+    } catch (error) {
+      // Error retrieving data
+    }
+  };
+
+ 
 
     setCatagory = async (cat)=> {
       
       await this.setState({catagory:cat})
       
       this.props.navigation.navigate("NewzScreen",{query:this.state.catagory})
-      }
-
+  }
+  
+  press(item) {
+    console.log("this toggle")
+    this._darkTheme.toggleTheme()
+  }
+  
+ 
     render(){
       
       const topics = new Array();
@@ -43,7 +70,7 @@ export default class HomeScreen extends React.Component{
       const topicsArr = []
       
       for (let i=0; i<topics.length; i++ ) {
-            
+        
           topicsArr.push(
             <TouchableOpacity
               key={ uuid.v1() }
@@ -56,14 +83,16 @@ export default class HomeScreen extends React.Component{
                 <Text style={styles.TopicsButtontext}>{topics[i][0]}</Text>
               </TouchableOpacity>)
              }
-            
+          
        
-        return(
-            <ScrollView style={styles.container}>
-            
-             
+      return (
+     
+            <ScrollView  style={[styles.container]}>
+
+        
+ 
              <View>
-                <Text style={styles.TextStyle}>Topics</Text>
+                <Text style={[styles.TextStyle]}>Topics</Text>
              </View>
             
             <SafeAreaView style={styles.TopicsContainer}>
@@ -73,16 +102,19 @@ export default class HomeScreen extends React.Component{
             </SafeAreaView>
       
                </ScrollView>
-        )
+            
+               )
                 
       
     }
 }
 
+
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "white",
+         backgroundColor:"white"
         
       },
     

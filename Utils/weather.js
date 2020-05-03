@@ -1,10 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet,TouchableOpacity, TextInput } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import PropTypes from 'prop-types';
-import { SearchBar } from 'react-native-elements';
-import WeatherScreen from '../Screens/WeatherScreen'
-// import { weatherConditions } from '../utilities/weatherConditions';
 
 export const weatherConditions = {
   Rain: {
