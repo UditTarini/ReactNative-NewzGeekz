@@ -1,12 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View,TextInput,Image,Keyboard, TouchableOpacity } from 'react-native';
+import { StyleSheet,ToastAndroid, Text,StatusBar,ImageBackground , View,TextInput,Image,Keyboard, TouchableOpacity } from 'react-native';
 // import Weather from '../Components/weather'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Constants from 'expo'
+
 import {weatherConditions } from '../Utils/weather'
 import { fetchWeather } from '../FetchData/WeatherData';
-import { SearchBar } from 'react-native-elements';
+
+import HeaderBar from "../Utils/HeaderBar"
 
 export default class WeatherScreen extends React.Component {
 
@@ -29,6 +29,7 @@ export default class WeatherScreen extends React.Component {
     }
   }
   UNSAFE_componentWillMount() {
+ 
     this.keyboardWillShowSub = Keyboard.addListener('keyboardDidShow', this.keyboardWillShow)
     this.keyboardWillHideSub = Keyboard.addListener('keyboardDidHide', this.keyboardWillHide)
   }
@@ -73,9 +74,9 @@ export default class WeatherScreen extends React.Component {
        
        fetchWeather(undefined,undefined,loc)
         .then(resJson => {
-          console.log(resJson)
+        
           if (resJson.cod == '404') {
-            alert(resJson.message)
+            ToastAndroid.show("Sorry city not found ",ToastAndroid.SHORT)
           }
             
           else {
@@ -91,7 +92,7 @@ export default class WeatherScreen extends React.Component {
             });
           }
         })
-        .catch(error => console.log(error));
+        .catch( ToastAndroid.show("Sorry unable to fetch data",ToastAndroid.SHORT));
     };
   
   
@@ -101,24 +102,26 @@ export default class WeatherScreen extends React.Component {
       this.locn(loc)
 
     } 
+    
 
-
- 
     const { isLoading, weather, temperature, location, humidity } = this.state
 
     return (
+      
       <View style={styles.container}>
+      <StatusBar hidden />
+        <HeaderBar height={25} fontSize={8} capFontSize={12}  />
         {isLoading ? (
           <View style={styles.loadingContainer}>
-            <Text stlye={styles.loadingText}>Fetching Your Weather</Text> 
+            <Text stlye={styles.loadingText}>Fetching Your Weather</Text>
           </View>
-          ) : (
+        ) : (
            
-            <View    
-              style={[
-                  styles.weatherContainer,
-                  { backgroundColor: weatherConditions[weather].color } ]}
-                 >
+            <ImageBackground
+             
+              source={{uri:weatherConditions[weather].img}}
+              style={[ styles.weatherContainer]}>
+
             <View>
             <TextInput
                style={styles.inputBox}
@@ -129,30 +132,32 @@ export default class WeatherScreen extends React.Component {
               onSubmitEditing={locFunct}
               onChangeText={loc =>{ this.setState({loc})}}/>
            </View>
-           <View style={styles.headerContainer}>
-              <Text style={styles.tempText}>Temp: {temperature}˚</Text>
+          
+           <View style={[styles.headerContainer]}>
+           <Text style={styles.locText}>{location}</Text>
+    
+           </View>
+       
+          <View style={[styles.headerContainer ,styles.tempBox]}>
+              <Text style={styles.tempText}>{parseInt(temperature)}˚C</Text>
           </View>
-          <View style={styles.headerContainer}>
+          <View style={styles.bodyContainer}>
+              <View style={styles.headerContainer}>
               <MaterialCommunityIcons
                 size={100}
-                name={weatherConditions[weather].icon}
+                name={ weatherConditions[weather].icon}
                 color={'#fff'}
             />
           </View>
-          <View style={styles.headerContainer}>
-              <Text style={styles.title}>{location}</Text>
-       
-          </View>
-          <View style={styles.bodyContainer}>
               <Text style={styles.title}>{weatherConditions[weather].title}</Text>
               <Text style={styles.subtitle}>{weatherConditions[weather].subtitle} </Text>
               <Text style={styles.subtitle}> Humidity: {humidity}% </Text>
           </View>
-    </View>
+       </ImageBackground >
              
             )}
       </View>
-    );
+    )
   }
 }
 
@@ -164,13 +169,11 @@ const styles = StyleSheet.create({
   weatherContainer: {
     flex: 1
   },
-  headerContainer: {
+  backgroundImage: {
     flex: 1,
-   
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around'
+    resizeMode: 'cover', // or 'stretch'
   },
+
   loadingContainer: {
     flex: 1,
     alignItems: 'center',
@@ -189,9 +192,32 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around'
   },
+  tempBox: {
+    marginTop:10,
+    backgroundColor: 'white',
+    opacity: 0.4,
+    textAlign: 'center',
+    borderRadius: 15,
+    
+    alignSelf:"center",
+    height:100, 
+    width:200 
+ 
+   
+    
+  },
   tempText: {
-    fontSize: 30,
-    color: '#fff'
+    fontWeight:"bold",
+    fontSize: 50,
+    color: '#000',
+    opacity: 1,
+  },
+  locText: {
+    marginTop:70,
+    fontSize: 20,
+    color: 'grey',
+    opacity: 1,
+    fontWeight:"bold"
   },
   bodyContainer: {
     flex: 2,
@@ -216,14 +242,14 @@ const styles = StyleSheet.create({
   inputBox: {
    
     backgroundColor: 'white',
-    opacity: 0.4,
+    opacity: 0.8,
     fontSize:15,
     textAlign: 'center',
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
     alignSelf:"center",
-    height: 35, 
-    width:250 
+    height: 30, 
+    width:260 
   },
  
 });

@@ -31,28 +31,7 @@ export async function getArticles(query) {
     else {
       articles = await fetch(`${articles_url}/top-headlines?sources=${query}&apiKey=${news_api}`)
     }
-        //  let articles = 
-        //       (query == 'International' || cat.indexOf(query) > -1 || cat2.indexOf(query) > -1 || paper.indexOf(query) > -1)? 
-             
-        //       (query == 'International' || cat.indexOf(query) > -1 || cat2.indexOf(query) > -1) ?
-               
-        //       (query == 'International' || cat.indexOf(query) > -1) ?
-                 
-        //       (query == 'International') ?
-                   
-        //       ( await fetch(`${articles_url}/everything?language=en&sortBy=publishedAt&domains=nytimes.com,bbc.com,aljazeera.com&apiKey=${news_api}`)):
-            
-        //       (await fetch(`${articles_url}/everything?language=en&q=${query}&apiKey=${news_api}`)):      
-            
-        //       (await fetch(`${articles_url}/top-headlines?country=${country_code}&category=${query}&apiKey=${news_api}`) ):
-            
-        //       (await fetch(`${articles_url}/top-headlines?sources=${query}&apiKey=${news_api}`)):
-         
-        //       (await fetch(`${articles_url}/everything?language=en&domains=${query}&apiKey=${news_api}`))
-    
-    
-             // await fetch(`${articles_url}/top-headlines?sources=${query}&apiKey=${news_api}`)
-             // await fetch(`${articles_url}/everyhting?language=en&domains=${query}&apiKey=${news_api}`)
+        
         
         let result = await articles.json();
         

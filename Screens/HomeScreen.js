@@ -1,121 +1,98 @@
 import React from 'react';
-import { StyleSheet, Text,AsyncStorage,TouchableOpacity, Image,ScrollView,FlatList, View, SafeAreaView, NativeModules } from 'react-native'
-import { render } from 'react-dom';
-import uuid from 'react-native-uuid';
-import { ThemeColors, useTheme } from 'react-navigation';
+import { StyleSheet, Text,StatusBar, AsyncStorage,TouchableOpacity, Image,ScrollView,FlatList, View, SafeAreaView, NativeModules } from 'react-native'
+import HeaderBar from "../Utils/HeaderBar"
 
 export default class HomeScreen extends React.Component {
-    
-    
+  
+ 
   constructor(props) {
     super(props)
-     
-    this.toggle = props.toggle;
-      
     this.state = {
       catagory: " ",
+    
+      
               
     }
   }
   
-  componentWillMount() {
-    this.retrieveData()
-  }
-  
-  retrieveData = async () => {
-    try {
-      const value = await AsyncStorage.getItem('value');
-      if (value !== null) {
-        // We have data!!
-        console.log(value);
-      }
-    } catch (error) {
-      // Error retrieving data
-    }
-  };
-
- 
-
-    setCatagory = async (cat)=> {
+  setCatagory = async (cat) => {
       
-      await this.setState({catagory:cat})
+    await this.setState({ catagory: cat })
       
-      this.props.navigation.navigate("NewzScreen",{query:this.state.catagory})
-  }
-  
-  press(item) {
-    console.log("this toggle")
-    this._darkTheme.toggleTheme()
+    this.props.navigation.navigate("NewzScreen", { query: this.state.catagory })
   }
   
  
-    render(){
+  
+
+    render()
+    {
       
       const topics = new Array();
-      topics[0] = new Array ( "Top Headlines", require("../assets/TopicsIcons/trending.png") );
-      topics[1] = new Array ( "International", require("../assets/TopicsIcons/businessman.png") );
-      topics[2] = new Array ( "Technology", require("../assets/TopicsIcons/automation.png") );
-      topics[3] = new Array ( "Business", require("../assets/TopicsIcons/teamwork.png") );
-      topics[4] = new Array ( "Sports", require("../assets/TopicsIcons/soccer.png") );
-      topics[5] = new Array ( "Science", require("../assets/TopicsIcons/molecule.png") );
-      topics[6] = new Array ( "Entertainment", require("../assets/TopicsIcons/theater.png") );
-      topics[7] = new Array ( "Fashion", require("../assets/TopicsIcons/designers.png") );
-      topics[8] = new Array ( "Travel", require("../assets/TopicsIcons/globe.png") );
-      topics[9] = new Array ( "Lifestyle", require("../assets/TopicsIcons/healthy.png") );
+      topics[0] = new Array("Top Headlines", require("../assets/TopicsIcons/trending.png"));
+      topics[1] = new Array("International", require("../assets/TopicsIcons/businessman.png"));
+      topics[2] = new Array("Technology", require("../assets/TopicsIcons/automation.png"));
+      topics[3] = new Array("Business", require("../assets/TopicsIcons/teamwork.png"));
+      topics[4] = new Array("Sports", require("../assets/TopicsIcons/soccer.png"));
+      topics[5] = new Array("Science", require("../assets/TopicsIcons/molecule.png"));
+      topics[6] = new Array("Entertainment", require("../assets/TopicsIcons/theater.png"));
+      topics[7] = new Array("Fashion", require("../assets/TopicsIcons/designers.png"));
+      topics[8] = new Array("Travel", require("../assets/TopicsIcons/globe.png"));
+      topics[9] = new Array("Lifestyle", require("../assets/TopicsIcons/healthy.png"));
     
       
       
-     // const topics = ['General', 'Fashion', 'Travel'];
-      
       const topicsArr = []
       
-      for (let i=0; i<topics.length; i++ ) {
+      for (let i = 0; i < topics.length; i++) {
         
-          topicsArr.push(
-            <TouchableOpacity
-              key={ uuid.v1() }
-              style={styles.TopicsButton}
-              onPress={ () => { this.setCatagory(topics[i][0]) }}  > 
-                <Image 
-                  style={styles.TopicsIcon}
-                  source={topics[i][1]}/>
+        topicsArr.push(
+          <TouchableOpacity
+            key={i}
+            style={styles.TopicsButton}
+            onPress={() => { this.setCatagory(topics[i][0]) }}  >
+            <Image
+              style={styles.TopicsIcon}
+              source={topics[i][1]} />
                  
-                <Text style={styles.TopicsButtontext}>{topics[i][0]}</Text>
-              </TouchableOpacity>)
-             }
-          
-       
-      return (
-     
-            <ScrollView  style={[styles.container]}>
-
+            <Text style={[styles.TopicsButtontext,
+            ]}>{topics[i][0]}</Text>
+          </TouchableOpacity>)
+      }
         
- 
-             <View>
-                <Text style={[styles.TextStyle]}>Topics</Text>
-             </View>
+      // let bc = this.state.value ? '#000' : '#fff'
+           
+      return (
+        <View style={styles.container}>
+        <StatusBar hidden />
+          <HeaderBar height={65} fontSize={14} capFontSize={23}/>
+        
+        <ScrollView >
+        
+         
+          <View>
+            <Text style={styles.TextStyle}>
+                Topics</Text>
+          </View>
             
-            <SafeAreaView style={styles.TopicsContainer}>
+          <SafeAreaView style={styles.TopicsContainer}>
             
             {topicsArr}
          
-            </SafeAreaView>
+          </SafeAreaView>
       
-               </ScrollView>
-            
-               )
+        </ScrollView>
+        </View> 
+      )
                 
       
     }
-}
-
-
+  }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-         backgroundColor:"white"
-        
+       backgroundColor:"white"        
       },
     
 
@@ -156,7 +133,8 @@ const styles = StyleSheet.create({
       TextStyle:{
          fontSize:20,
          fontWeight:"500",
-         padding:7,
+         padding: 7,
+     
         
       }
 })

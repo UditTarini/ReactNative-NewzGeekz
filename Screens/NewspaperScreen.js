@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity,Text, Image,ScrollView,FlatList, View, SafeAreaView, NativeModules } from 'react-native';
+import { StyleSheet,StatusBar, TouchableOpacity,Text, Image,ScrollView,FlatList, View, SafeAreaView, NativeModules } from 'react-native';
+import HeaderBar from "../Utils/HeaderBar"
 
-import { block } from 'react-native-reanimated';
-import uuid from 'react-native-uuid';
+
 
 
 
@@ -11,12 +11,13 @@ export default class NewspaperScreen extends React.Component {
   constructor(props){
     super(props)
     this.state={
-        source:""
+      source: "",
+    
      }
   }
 
-  
-  setSource = async (source)=> {
+
+  setSource = async (source) => {
       
     await this.setState({source:source})
     console.log(this.state.source)
@@ -69,35 +70,38 @@ export default class NewspaperScreen extends React.Component {
           NationalArr.push(
                 
             <TouchableOpacity
-              key={ uuid.v1() }
+              key={ Date.now() }
               style={styles.newspaperButton}
               onPress={() => { this.setSource(newspaper[i][1]) }}  >
               <Image
                 style={styles.newspaperIcon}
                 source={newspaper[i][2]} />
                         
-              <Text style={styles.newspaperButtontext}>{newspaper[i][0]}</Text>
+              <Text
+                style={styles.newspaperButtontext }>
+                {newspaper[i][0]}</Text>
             </TouchableOpacity>)
           break
         case "IN":
           InternationalArr.push(
                 
             <TouchableOpacity
-              key={ uuid.v1() }
+              key={ Date.now() }
               style={styles.newspaperButton}
               onPress={() => { this.setSource(newspaper[i][1]) }}  >
               <Image
                 style={styles.newspaperIcon}
                 source={newspaper[i][2]} />
                         
-              <Text style={styles.newspaperButtontext}>{newspaper[i][0]}</Text>
+              <Text style={styles.newspaperButtontext}>
+                {newspaper[i][0]}</Text>
             </TouchableOpacity>)
           break
         case "TC":
           TechArr.push(
                 
             <TouchableOpacity
-              key={ uuid.v1() }
+              key={ Date.now() }
               style={styles.newspaperButton}
               onPress={() => { this.setSource(newspaper[i][1]) }}  >
               <Image
@@ -111,14 +115,17 @@ export default class NewspaperScreen extends React.Component {
           FinanceArr.push(
                 
             <TouchableOpacity
-              key={ uuid.v1() }
+              key={ Date.now() }
               style={styles.newspaperButton}
               onPress={() => { this.setSource(newspaper[i][1]) }}  >
               <Image
                 style={styles.newspaperIcon}
                 source={newspaper[i][2]} />
                         
-              <Text style={styles.newspaperButtontext}>{newspaper[i][0]}</Text>
+              <Text
+                style={styles.newspaperButtontext }>
+                {newspaper[i][0]}
+              </Text>
             </TouchableOpacity>)
           break
          
@@ -129,12 +136,18 @@ export default class NewspaperScreen extends React.Component {
   
                
           
-           return(
-               <ScrollView style={styles.container}>
+    return (
+      <View style={styles.container}>
+             <StatusBar hidden />
+             <HeaderBar height={65} fontSize={14} capFontSize={23}/>
+
+             <ScrollView >
                
                 
-                <View>
-                   <Text style={styles.TextStyle}>Newspaper</Text>
+               <View>
+                 <Text
+                   style={styles.TextStyle}>
+                   Newspaper</Text>
                </View>
 
                <Text style={styles.subTexStyle} >National</Text>           
@@ -170,16 +183,20 @@ export default class NewspaperScreen extends React.Component {
                </SafeAreaView>
          
                   </ScrollView>
-           )
+                  </View>
+                  )
                    
          
        }
-   }
+}
+
+
    
    const styles = StyleSheet.create({
        container: {
            flex: 1,
-           backgroundColor: "white",
+           backgroundColor:"white",
+           
            
          },
        
@@ -200,7 +217,7 @@ export default class NewspaperScreen extends React.Component {
            width: "31.33%",
            shadowOffset:{width: 2,height: 2},
            elevation: 2,
-           shadowColor: 'black',
+           backgroundColor:"white",
            shadowOpacity: 0.2,
    
          },
@@ -208,7 +225,7 @@ export default class NewspaperScreen extends React.Component {
            flex: 1
          },
          newspaperButtontext: {
-           color: "#000",
+      
            fontSize: 13,
            
          },

@@ -9,9 +9,9 @@ export const language='en';
 
 export const weather_api = api.weather_api
 
-// 
-// https://newsapi.org/v2/top-headlines?language=en&apiKey=3c63988bcfb947f18d9bc1ca9c3c5d19
-
-
-//International: https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey
-//others 3: https://newsapi.org/v2/everything?language=en&q=fashion&apiKey
+export const STRIPE = {
+    PUBLIC_KEY: '',
+    PLAN_NAME: '',
+    SUCCESS_URL: 'https://yourwebsite/payment/success',
+    CANCELED_URL: 'https://yourwebsite/payment/canceled',
+  };

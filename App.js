@@ -7,8 +7,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
-import { createDrawerNavigator } from 'react-navigation-drawer';
-import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
+
 
 import NewzScreen from "./Screens/NewzScreen"
 import ViewScreen from "./Screens/ViewScreen"
@@ -17,7 +16,9 @@ import HomeScreen from "./Screens/HomeScreen"
 import NewspaperScreen from "./Screens/NewspaperScreen"
 import WeatherScreen from "./Screens/WeatherScreen"
 
-import SettingsScreen from "./Screens/SettingsScreen"
+
+import MenuScreen from "./Screens/MenuScreen"
+
 
 const StackNavigator = createStackNavigator(
   {
@@ -28,49 +29,18 @@ const StackNavigator = createStackNavigator(
     
 
   },
-  {  
-    
-   
-    defaultNavigationOptions: {
-      headerTintColor: "#fff",
-      title: "NewzGeekz",
-      headerTitleAlign: 'center',
-      headerStyle: {
-        backgroundColor: "#fff"
-      },
-      headerTitleStyle: {
-        color: "#000",
-        alignSelf: 'center',
-        
-      },
-    
-    
-      }
-}
+  { defaultNavigationOptions: {
+    headerShown: false
+  }}
+
 )
 
 const WeatherNav = createStackNavigator(
   { Weather: { screen: WeatherScreen},
-  },{  
-    
-   
-    defaultNavigationOptions: {
-      headerTitleAlign: 'center',
-      headerTintColor: "#fff",
-      title:"NewzGeekz",
-        headerStyle: {
-        backgroundColor: "#fff",
-        height:40
-      },
-      headerTitleStyle: {
-        color: "#000",
-        alignSelf: 'center',
-        fontSize: 12
-      },
-    
-    
-    }
-  }
+  }, { defaultNavigationOptions: {
+    headerShown: false
+  }}
+  
 )
 
 const NewspaperNav = createStackNavigator(
@@ -78,48 +48,21 @@ const NewspaperNav = createStackNavigator(
     Newspaper: { screen: NewspaperScreen },
     NewzScreen: { screen: NewzScreen },
     ViewScreen: { screen: ViewScreen},
-  },{  
-    headerLayoutPreset: 'center',
-   
-    defaultNavigationOptions: {
-      headerTintColor: "#fff",
-      title:"NewzGeekz",
-      headerStyle: {
-        backgroundColor: "#fff"
-      },
-      headerTitleStyle: {
-        color: "#000",
-        alignSelf: 'center',
-        
-      },
-    
-    
-    }
-  }
+  }, { defaultNavigationOptions: {
+    headerShown: false
+  }}
 )
 const SettingsNav = createStackNavigator(
   {
-    SettingScreen: { screen: SettingsScreen },
-    ViewScreen: { screen: ViewScreen}
+  //  store: {screen: storeSc},
+    MenuScreen: { screen: MenuScreen },
+    ViewScreen: { screen: ViewScreen },
+    HomeScreen: { screen: HomeScreen},
+    
  
-  },{  
-    headerLayoutPreset: 'center',
-   
-    defaultNavigationOptions: {
-      headerTintColor: "#fff",
-      title:"NewzGeekz",
-      headerStyle: {
-        backgroundColor: "#fff"
-      },
-      headerTitleStyle: {
-        color: "#000",
-        alignSelf: 'center',
-        
-      },
-    
-    
-    }
-  }
+  }, { defaultNavigationOptions: {
+    headerShown: false
+  }}
 )
 
 
@@ -169,10 +112,10 @@ const TabNavigator = createMaterialBottomTabNavigator(
     Settings: {
       screen: SettingsNav,
       navigationOptions: {
-        title:"Settngs",
+        title:"Menu",
         tabBarIcon: ({ tintColor }) => (
           <View>
-            <Icon style={[{color: tintColor}]} size={25} name={'ios-settings'} />
+            <Icon style={[{color: tintColor}]} size={25} name={'ios-menu'} />
           </View>
         ),
      
@@ -186,23 +129,15 @@ const TabNavigator = createMaterialBottomTabNavigator(
   {
     activeColor: '#F80B0B',
     inactiveColor: '#D1CCCC',
-    barStyle: { backgroundColor: '#fff' },
+    barStyle: { backgroundColor: '#f7f7f7' },
     
   }
 );
 
-//create app container
+
 const App = createAppContainer(TabNavigator);
 export default App;
-// export default () => {
-//   let theme = useColorScheme();
 
-//   return (
-//     <AppearanceProvider>
-//       <App theme={'dark'} />
-//     </AppearanceProvider>
-//   )
-// }
 
 
   

@@ -4,24 +4,29 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export const weatherConditions = {
   Rain: {
+    img: 'https://images.unsplash.com/photo-1525087740718-9e0f2c58c7ef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
     color: '#005BEA',
     title: 'Raining',
     subtitle: 'Grab a cup of coffee',
-    icon: 'weather-rainy'
+    icon: 'weather-rainy',
+    
   },
   Clear: {
+    img: 'https://images.unsplash.com/photo-1582122405457-39754d719c9d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
     color: '#f7f033',
-    title: 'Super Sunny',
-    subtitle: 'Wear sunglasses!',
+    title: 'Sunny',
+    subtitle: 'Wear sunglasses !',
     icon: 'weather-sunny'
   },
   Thunderstorm: {
+    img: 'https://images.unsplash.com/photo-1541746852648-0f6fdebb23d7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
     color: '#525252',
     title: 'A Storm is coming',
-    subtitle: 'Better get inside!',
+    subtitle: 'Oops better get inside !',
     icon: 'weather-lightning'
   },
   Clouds: {
+    img: 'https://images.unsplash.com/photo-1542272201-b1ca555f8505?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
     color: '#403861',
     title: 'Cloudy',
     subtitle: 'With a chance of meatballs',
@@ -29,27 +34,31 @@ export const weatherConditions = {
   },
 
   Snow: {
+    img: 'https://images.unsplash.com/photo-1520580266137-41b83d2c3b32?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
     color: '#00d2ff',
     title: 'Snow',
-    subtitle: 'Get out and build a snowman!',
+    subtitle: 'Get out and build a snowman !',
     icon: 'weather-snowy'
   },
   Drizzle: {
+    img: 'https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
     color: '#076585',
     title: 'Drizzle',
-    subtitle: 'Partially raining...',
+    subtitle: 'It\'s partially raining',
     icon: 'weather-hail'
   },
   Haze: {
+    img: 'https://images.unsplash.com/photo-1533708985023-a9726305e9c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
     color: '#66A6FF',
     title: 'Haze',
-    subtitle: 'Another name for Partly Raining',
+    subtitle: 'May be some dust is there !',
     icon: 'weather-hail'
   },
   Mist: {
+    img: 'https://images.unsplash.com/photo-1534761166353-857a5a4b5c8c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
     color: '#3CD3AD',
     title: 'Mist',
-    subtitle: "Microscopic water droplets",
+    subtitle: "just some microscopic water droplets",
     icon: 'weather-fog'
   }
 };

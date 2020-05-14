@@ -1,42 +1,28 @@
 import React  from 'react';
 import { WebView } from 'react-native-webview';
-import {Text} from 'react-native'
-import {Icon, Content} from 'native-base'
-import { ScrollView } from 'react-native-gesture-handler';
-export default class ViewScreen extends React.Component {
- 
-  
-    static navigationOptions = 
-  ({ navigation }) => 
-  ({ headerLeft: 
-    
-    <Icon name={'md-arrow-back'}
-     color='#ffffff' 
-     style={{paddingLeft: 20,fontSize: 20 }} 
-     onPress={ () => { navigation.goBack() }} />,
-     title: 'NewzGeekz',
-     headerStyle: {height:40},
-     headerTitleStyle: { 
-        color: "#000",
-        alignSelf: 'center',
-        fontSize: 12
-         } });
+import {Text, View} from 'react-native'
+import {Icon} from 'native-base'
 
+import HeaderBar from "../Utils/HeaderBar"
+import { SafeAreaView } from 'react-navigation';
+export default class ViewScreen extends React.Component {
   render() {
 
     const url = this.props.navigation.getParam("url", null);
     if( url != null ) {
       
       return (
-     
+        <View  style={{ flex: 1 }}>
+        <HeaderBar height={22} fontSize={8} capFontSize={12}  />
       <WebView 
-      source={{uri:url}} style={{flex: 1}}
+      
+      source={{ uri: url }}
+      style={{ flex: 1 }}
       javaScriptEnabled={true}
       domStorageEnabled={true}
       startInLoadingState
-      scalesPageToFit
-        />
-     
+      scalesPageToFit />
+        </View>
     );
       } else {
         return(
