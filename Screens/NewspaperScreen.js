@@ -1,13 +1,17 @@
 import React from 'react';
-import { StyleSheet,StatusBar, TouchableOpacity,Text, Image,ScrollView,FlatList, View, SafeAreaView, NativeModules } from 'react-native';
+import { StyleSheet,StatusBar, TouchableOpacity,Text, Image,ScrollView,Share, View, SafeAreaView } from 'react-native';
 import HeaderBar from "../Utils/HeaderBar"
-
+import {AdMobBanner} from 'expo-ads-admob';
+import {ad}  from "../Config/secrets";
 
 
 
 
 
 export default class NewspaperScreen extends React.Component {
+
+  AdUnitID = ad.AD_UNIT_ID02
+
   constructor(props){
     super(props)
     this.state={
@@ -20,7 +24,7 @@ export default class NewspaperScreen extends React.Component {
   setSource = async (source) => {
       
     await this.setState({source:source})
-    console.log(this.state.source)
+   
     this.props.navigation.navigate("NewzScreen",{query:this.state.source})
     }
   
@@ -28,7 +32,7 @@ export default class NewspaperScreen extends React.Component {
       
     const newspaper = new Array();
     
-    newspaper[0] = new Array("The Hindu","the-hindu", require("../assets/NewsIcons/TH.jpg"),"NA");
+    newspaper[0] = new Array("The Hindu","the-hindu", require("../assets/NewsIcons/TH.png"),"NA");
     newspaper[1] = new Array("Times of India","the-times-of-india", require("../assets/NewsIcons/TOI.png"),"NA");
     newspaper[2] = new Array("Indian Express", "indianexpress.com", require("../assets/NewsIcons/IndExp.png"),"NA");
     newspaper[3] = new Array("News18","news18.com", require("../assets/NewsIcons/News18.jpg"),"NA");
@@ -36,10 +40,10 @@ export default class NewspaperScreen extends React.Component {
     newspaper[5] = new Array("Hindustan Times","hindustantimes.com", require("../assets/NewsIcons/HT.jpg"),"NA");
          
   
-    newspaper[6] = new Array("AL Jazeera","al-jazeera-english", require("../assets/NewsIcons/Alzazeera.jpg"),"IN");
+    newspaper[6] = new Array("AL Jazeera","al-jazeera-english", require("../assets/NewsIcons/Aljazeera.jpg"),"IN");
     newspaper[7] = new Array("BBC","bbc-news", require("../assets/NewsIcons/BBC.png"),"IN");
     newspaper[8] = new Array("Reuters","reuters", require("../assets/NewsIcons/reuters.jpg"),"IN");
-    newspaper[9] = new Array("Wall Street Journal","the-wall-street-journal", require("../assets/NewsIcons/WSJ.jpg"),"IN");
+    newspaper[9] = new Array("Wall Street Journal","the-wall-street-journal", require("../assets/NewsIcons/WSJ.png"),"IN");
     newspaper[10] = new Array("Buzzfeed","buzzfeed", require("../assets/NewsIcons/BuzzFeed.png"),"IN");
          
    
@@ -70,6 +74,7 @@ export default class NewspaperScreen extends React.Component {
           NationalArr.push(
                 
             <TouchableOpacity
+            
               key={ Date.now() }
               style={styles.newspaperButton}
               onPress={() => { this.setSource(newspaper[i][1]) }}  >
@@ -126,7 +131,8 @@ export default class NewspaperScreen extends React.Component {
                 style={styles.newspaperButtontext }>
                 {newspaper[i][0]}
               </Text>
-            </TouchableOpacity>)
+            </TouchableOpacity>
+          )
           break
          
       
@@ -139,7 +145,7 @@ export default class NewspaperScreen extends React.Component {
     return (
       <View style={styles.container}>
              <StatusBar hidden />
-             <HeaderBar height={65} fontSize={14} capFontSize={23}/>
+             <HeaderBar height={60} fontSize={11} capFontSize={16}/>
 
              <ScrollView >
                
@@ -150,7 +156,7 @@ export default class NewspaperScreen extends React.Component {
                    Newspaper</Text>
                </View>
 
-               <Text style={styles.subTexStyle} >National</Text>           
+               <Text style={styles.subTexStyle} >Indian</Text>           
                
                <SafeAreaView style={styles.newspaperContainer}>
                
@@ -182,8 +188,17 @@ export default class NewspaperScreen extends React.Component {
             
                </SafeAreaView>
          
-                  </ScrollView>
-                  </View>
+               <AdMobBanner
+               bannerSize="smartBannerLandscape"
+               adUnitID={this.AdUnitID}
+               servePersonalizedAds={true}
+               onAdViewDidReceiveAd = {this.bannerAdReceived}
+               onDidFailToReceiveAdWithError={this.bannerError} />
+              
+          </ScrollView>
+                  
+      
+          </View>
                   )
                    
          
@@ -210,13 +225,13 @@ export default class NewspaperScreen extends React.Component {
            alignItems: "center",
            justifyContent: "center",
            margin:3,
-           height: 110,
+           height: 130,
            borderColor: "#c1c1c1",
            borderWidth: 1,
            borderRadius: 5,
            width: "31.33%",
            shadowOffset:{width: 2,height: 2},
-           elevation: 2,
+         
            backgroundColor:"white",
            shadowOpacity: 0.2,
    
@@ -225,8 +240,8 @@ export default class NewspaperScreen extends React.Component {
            flex: 1
          },
          newspaperButtontext: {
-      
-           fontSize: 13,
+           paddingHorizontal:15,
+           fontSize: 12,
            
          },
          newspaperIcon:{

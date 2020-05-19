@@ -1,29 +1,36 @@
 import React from 'react';
 import { StyleSheet, Text,StatusBar, AsyncStorage,TouchableOpacity, Image,ScrollView,FlatList, View, SafeAreaView, NativeModules } from 'react-native'
 import HeaderBar from "../Utils/HeaderBar"
+import {AdMobBanner} from 'expo-ads-admob';
+import {ad}  from "../Config/secrets";
 
 export default class HomeScreen extends React.Component {
-  
+  AdUnitID = ad.AD_UNIT_ID01
  
   constructor(props) {
     super(props)
     this.state = {
       catagory: " ",
-    
-      
-              
+            
     }
   }
+  
   
   setCatagory = async (cat) => {
       
     await this.setState({ catagory: cat })
       
     this.props.navigation.navigate("NewzScreen", { query: this.state.catagory })
-  }
-  
  
+  } 
   
+  bannerError = () => {
+    console.log('banner ad not loading')
+  }
+bannerAdReceived = () => {
+    console.log('banner ad received')
+  }
+ 
 
     render()
     {
@@ -60,12 +67,12 @@ export default class HomeScreen extends React.Component {
           </TouchableOpacity>)
       }
         
-      // let bc = this.state.value ? '#000' : '#fff'
+    
            
       return (
         <View style={styles.container}>
         <StatusBar hidden />
-          <HeaderBar height={65} fontSize={14} capFontSize={23}/>
+          <HeaderBar height={60} fontSize={11} capFontSize={16}/>
         
         <ScrollView >
         
@@ -81,7 +88,16 @@ export default class HomeScreen extends React.Component {
          
           </SafeAreaView>
       
-        </ScrollView>
+          <AdMobBanner
+          bannerSize="smartBannerLandscape"
+          adUnitID={this.AdUnitID}
+          servePersonalizedAds={true}
+         
+          onDidFailToReceiveAdWithError={this.bannerError} />
+         
+          </ScrollView>
+          
+         
         </View> 
       )
                 
@@ -105,15 +121,12 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         margin:3,
-        height: 110,
+        height: 130,
         borderColor: "#c1c1c1",
         borderWidth: 1,
         borderRadius: 5,
         width: "31.33%",
-        shadowOffset:{width: 2,height: 2},
-        elevation: 2,
-        shadowColor: 'black',
-        shadowOpacity: 0.2,
+       
 
       },
       screenview: {
@@ -121,7 +134,7 @@ const styles = StyleSheet.create({
       },
       TopicsButtontext: {
         color: "#000",
-        fontSize: 13,
+        fontSize: 12,
         
       },
       TopicsIcon:{

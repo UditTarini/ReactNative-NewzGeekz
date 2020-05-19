@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text,Linking,  Dimensions,StatusBar, AsyncStorage,TouchableOpacity, Image,ScrollView,FlatList, View, SafeAreaView } from 'react-native'
-import { Card, CardItem, Icon, Right, Left} from 'native-base'
+import { StyleSheet, Text,Linking,  Dimensions,StatusBar, Share, TouchableOpacity, View, SafeAreaView } from 'react-native'
+import { Card, CardItem} from 'native-base'
 import HeaderBar from "../Utils/HeaderBar"
 import * as Device from 'expo-device';
 
@@ -15,17 +15,25 @@ export default class MenuScreen extends React.Component {
  
   
   appShare = () => {
-    alert("app share")
-  }  
+    
+    let title = "via"
+    let link  = "https://play.google.com/store/apps/details?id=com.CodeCrafter.NewzGeekz"
+    let message = `Hey, have you tried NewzGeekz App yet?\ncheck this amazing app to get all the latest news\n${link} `;
+    return Share.share(
+      { title, message, url: message },
+      { dialogTitle: `Share ${title}` }
+    )
+  }
+   
   appRate = () => {
-    alert("app rate")
+   return Linking.openURL("https://play.google.com/store/apps/details?id=com.CodeCrafter.NewzGeekz")
   }  
 
   appFeedback = async () => {
    
     let to = 'udit.tarini937@gmail.com'
     let sub = `Feedback for NewzGeek App`
-    let body = `Device Name: ${Name}  \n OS Name:${OSName} \n OS Version:${OSVer} \n OS Id: ${OSID} \n Screen Width:${screenWidth} \n ----------------------------------------------------- \n \n`
+    let body = `Device Name: ${Name}  \n OS Name:${OSName} \n OS Version:${OSVer} \n OS Id: ${OSID} \n Screen Width:${screenWidth} \n Screen Height:${screenHeight} \n ----------------------------------------------------- \n \n`
     let url = `mailto:${to}?subject=${sub}&body=${body}`
     return Linking.openURL(url);
   }  
@@ -45,7 +53,7 @@ export default class MenuScreen extends React.Component {
     return (
         <View style={styles.container}>
         <StatusBar hidden />
-        <HeaderBar height={65} fontSize={14} capFontSize={23} />
+        <HeaderBar height={60} fontSize={11} capFontSize={15}/>
         
         <SafeAreaView >
          
@@ -83,8 +91,8 @@ export default class MenuScreen extends React.Component {
             </TouchableOpacity>
             </CardItem> 
           </Card>
-          
-
+  
+       
         </SafeAreaView>
         </View>
       ) 

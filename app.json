@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Newz",
-    "slug": "Newz",
+    "name": "NewzGeekz",
+    "slug": "newzgeekz",
     "platforms": [
       "ios",
       "android",
@@ -23,7 +23,17 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
-   
+    },
+    "android": {
+      "permissions": [
+        "ACCESS_FINE_LOCATION"
+      ],
+      "config": {
+        "googleMobileAdsAppId": "ca-app-pub-4783235474464550~1762838035"
+      },
+      "package": "com.CodeCrafter.NewzGeekz",
+      "versionCode": 1
+    },
+    "description": "Download the NewzGeekz app to get all the latest headlines from worlds leading publishers in one place. "
   }
 }

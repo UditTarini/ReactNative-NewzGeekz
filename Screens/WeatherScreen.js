@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet,ToastAndroid, Text,StatusBar,ImageBackground , View,TextInput,Image,Keyboard, TouchableOpacity } from 'react-native';
-// import Weather from '../Components/weather'
+import * as Location from 'expo-location';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import {weatherConditions } from '../Utils/weather'
@@ -13,9 +13,7 @@ export default class WeatherScreen extends React.Component {
    
   constructor(props){
     super(props)
-    this.keyboardWillShow = this.keyboardWillShow.bind(this)
-    this.keyboardWillHide = this.keyboardWillHide.bind(this)
-
+   
     this.loc = props.loc;
     this.state = {
     isLoading: true,
@@ -28,30 +26,16 @@ export default class WeatherScreen extends React.Component {
     
     }
   }
-  UNSAFE_componentWillMount() {
+  
+
  
-    this.keyboardWillShowSub = Keyboard.addListener('keyboardDidShow', this.keyboardWillShow)
-    this.keyboardWillHideSub = Keyboard.addListener('keyboardDidHide', this.keyboardWillHide)
-  }
-
-  UNSAFE_componentWillUnmount() {
-    this.keyboardWillShowSub.remove()
-    this.keyboardWillHideSub.remove()
-  }
-
-  keyboardWillShow = event => {
-    this.setState({
-      isVisible: false
-    })
-  }
-
-  keyboardWillHide = event => {
-    this.setState({
-      isVisible: true
-    })
-  }
   componentDidMount() {
    
+     this.currentLocationAsync()
+   
+     }
+
+  currentLocation = () => {
     navigator.geolocation.getCurrentPosition(
       position => {
         var lat =  position.coords.latitude 
@@ -68,8 +52,17 @@ export default class WeatherScreen extends React.Component {
     
         })
       })
-     }
+  }
+  
+  currentLocationAsync = async () => {
+    let { status } = await Location.requestPermissionsAsync()
+    if (status !== 'granted') {
+      alert("Permission to access location was denied ")
+    }
+    this.currentLocation()
+  }
 
+  
     locn = (loc) => {
        
        fetchWeather(undefined,undefined,loc)
@@ -151,7 +144,7 @@ export default class WeatherScreen extends React.Component {
           </View>
               <Text style={styles.title}>{weatherConditions[weather].title}</Text>
               <Text style={styles.subtitle}>{weatherConditions[weather].subtitle} </Text>
-              <Text style={styles.subtitle}> Humidity: {humidity}% </Text>
+              <Text style={styles.subtitle}>Humidity: {humidity}% </Text>
           </View>
        </ImageBackground >
              
@@ -171,7 +164,7 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     flex: 1,
-    resizeMode: 'cover', // or 'stretch'
+    resizeMode: 'cover', 
   },
 
   loadingContainer: {

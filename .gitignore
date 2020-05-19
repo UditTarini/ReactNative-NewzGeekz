@@ -13,7 +13,8 @@ web-report/
 
 Config/apikey.js
 ztest
-
+newzgeekz.jks
+app.json
 # macOS
 .DS_Store
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet,Alert,StatusBar,TouchableOpacity , Dimensions ,Linking,ActivityIndicator,Text,Share,  Image, View, SafeAreaView } from 'react-native';
-import { Container, Header,List, Content, Card, CardItem, Thumbnail,  Button, Icon, Left, Body, Right } from 'native-base';
+import { StyleSheet,Alert,StatusBar,TouchableOpacity , Dimensions ,ActivityIndicator,Text,Share,YellowBox,  Image, View} from 'react-native';
+import {List, Card, CardItem,Icon, Left, Body, Right } from 'native-base';
 
 import * as Speech from 'expo-speech';
 import TimeAgo from '../Utils/time';
@@ -9,8 +9,12 @@ import HeaderBar from "../Utils/HeaderBar"
 
 
 import { getArticles } from '../FetchData/NewsData';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
+YellowBox.ignoreWarnings([
+  'VirtualizedLists should never be nested', // TODO: Remove when fixed
+])
 
 export default class NewzScreen extends React.Component {   
   
@@ -69,37 +73,49 @@ export default class NewzScreen extends React.Component {
     
   
   render() {
+
+    let playNewsView = this.state.isLoading ?(
+      <View>
+      
+      </View>
+    ): (
+       
+      <Card >
+      <CardItem scrollEnabled={false}>
+      <TouchableOpacity
+        onPress={() => { this.playNews() }}>
+        
+        <Icon name={this.state.playStatus.toLowerCase()}
+          style={{ fontSize: 23, color: 'red' }} />
+      </TouchableOpacity>
+ 
+      <Text >
+        {this.state.playStatus} The News...</Text>
+  
+    </CardItem>
+    </Card >
+    
+    )
+
+    
     
     let view = this.state.isLoading ? (
       
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',backgroundColor:"white"}}>
         <ActivityIndicator
           color="#00f0ff"
           animating={this.state.isLoading}
-        style={ {flex: 1,justifyContent: 'center', alignItems: 'center', marginTop: screenHeight / 2 }}
+          style={ {justifyContent: 'center', alignItems: 'center', marginTop: screenHeight / 2 }}
         />
         <Text style={{ marginTop: 10 }} children="Please Wait.." />
+        <View style={{ height: screenHeight / 2 - 100 }}>
+        </View>
       </View>
      
     ) : (
         <View>
-    
-          <Card >
-            <CardItem >
-              <TouchableOpacity
-                onPress={() => { this.playNews() }}>
-                
-                <Icon name={this.state.playStatus.toLowerCase()}
-                  style={{ fontSize: 23, color: 'red' }} />
-              </TouchableOpacity>
-         
-              <Text >
-                {this.state.playStatus} The News...</Text>
-          
-            </CardItem>
-          </Card>
+ 
       
-        
           <List
             key={Date.now()}
             dataArray={this.state.data}
@@ -115,15 +131,16 @@ export default class NewzScreen extends React.Component {
                     <CardItem >
                       <Left>
                         <Body>
-                          <Text style={{ color: this.props.value ? '#fff' : '#000' }}
+                          <Text style={{ color: '#000' }}
                             numberOfLines={2}>{item.title}</Text>
  
                         </Body>
-                        <TouchableOpacity activeOpacity={1}
+                        <TouchableOpacity
+                          activeOpacity={1}
                           onPress={() => {
                           
-                            const { url, title } = item;
-                         
+                            let { url } = item;
+                            let title = "via"
                             let message = `${title}\n\n Click To Know More\n ${url}\n\nShared via *NewzGeekz*  App`;
                             return Share.share(
                               { title, message, url: message },
@@ -131,7 +148,7 @@ export default class NewzScreen extends React.Component {
                             )
                           }}  >
                           <Icon name="md-share"
-                            style={{ color: this.props.value ? '#fff' : '#000', fontSize: 18 }} />
+                            style={{ color:'#000', fontSize: 18 }} />
                         </TouchableOpacity>
                       </Left>
                    
@@ -154,18 +171,26 @@ export default class NewzScreen extends React.Component {
               )
             }}
             keyExtractor={(item, index) => index.toString()}
-          />
+            />
+            
+      
         </View>
       )
      
 
     return (
-      <View style={{backgroundColor:"white"}} >
+      <View  style={{backgroundColor:"white"}}>
       <StatusBar hidden />
        <HeaderBar height={65} fontSize={14} capFontSize={23} />
+        {playNewsView}
+        <ScrollView>
           {view}
+          
+          <View style={{height:100,backgroundColor:"white"}}>
+           
+          </View>
+        </ScrollView>
        
-      
         </View>
     
       );
