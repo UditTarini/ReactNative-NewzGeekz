@@ -1,12 +1,12 @@
 import React from 'react';
-import { StyleSheet,ToastAndroid, Text,StatusBar,ImageBackground , View,TextInput,Image,Keyboard, TouchableOpacity } from 'react-native';
+import { StyleSheet,ToastAndroid, Text,StatusBar,ImageBackground , View,TextInput } from 'react-native';
 import * as Location from 'expo-location';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-
 import {weatherConditions } from '../Utils/weather'
 import { fetchWeather } from '../FetchData/WeatherData';
 
 import HeaderBar from "../Utils/HeaderBar"
+
 
 export default class WeatherScreen extends React.Component {
 
@@ -21,8 +21,8 @@ export default class WeatherScreen extends React.Component {
     weather: null,
     location: null,
     humidity: null,
-      loc: "",
-      isVisible: true
+    loc: "",
+    isVisible: true
     
     }
   }
@@ -30,11 +30,9 @@ export default class WeatherScreen extends React.Component {
 
  
   componentDidMount() {
-   
-     this.currentLocationAsync()
-   
-     }
-
+    this.currentLocationAsync()
+  }
+  
   currentLocation = () => {
     navigator.geolocation.getCurrentPosition(
       position => {
@@ -65,7 +63,8 @@ export default class WeatherScreen extends React.Component {
   
     locn = (loc) => {
        
-       fetchWeather(undefined,undefined,loc)
+      
+        fetchWeather(undefined,undefined,loc)
         .then(resJson => {
         
           if (resJson.cod == '404') {
@@ -85,8 +84,13 @@ export default class WeatherScreen extends React.Component {
             });
           }
         })
-        .catch( ToastAndroid.show("Sorry unable to fetch data",ToastAndroid.SHORT));
-    };
+      
+  
+       
+  }
+
+
+ 
   
   
   render() {
@@ -103,11 +107,13 @@ export default class WeatherScreen extends React.Component {
       
       <View style={styles.container}>
       <StatusBar hidden />
-        <HeaderBar height={25} fontSize={8} capFontSize={12}  />
+       <HeaderBar height={25} fontSize={8} capFontSize={12}  />
         {isLoading ? (
+
           <View style={styles.loadingContainer}>
-            <Text stlye={styles.loadingText}>Fetching Your Weather</Text>
+            <Text stlye={styles.loadingText}>Fetching weather details...</Text>
           </View>
+
         ) : (
            
             <ImageBackground
@@ -189,7 +195,7 @@ const styles = StyleSheet.create({
     marginTop:10,
     backgroundColor: 'white',
     opacity: 0.4,
-    textAlign: 'center',
+   
     borderRadius: 15,
     
     alignSelf:"center",
@@ -237,7 +243,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     opacity: 0.8,
     fontSize:15,
-    textAlign: 'center',
+    textAlign:"center",
     borderBottomLeftRadius: 15,
     borderBottomRightRadius: 15,
     alignSelf:"center",

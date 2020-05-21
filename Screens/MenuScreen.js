@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, Text,Linking,  Dimensions,StatusBar, Share, TouchableOpacity, View, SafeAreaView } from 'react-native'
 import { Card, CardItem} from 'native-base'
 import HeaderBar from "../Utils/HeaderBar"

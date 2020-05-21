@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet,StatusBar, TouchableOpacity,Text, Image,ScrollView,Share, View, SafeAreaView } from 'react-native';
+import { StyleSheet,StatusBar, TouchableOpacity,Text, Image,ScrollView,View, SafeAreaView } from 'react-native';
 import HeaderBar from "../Utils/HeaderBar"
 import {AdMobBanner} from 'expo-ads-admob';
 import {ad}  from "../Config/secrets";
@@ -189,11 +189,10 @@ export default class NewspaperScreen extends React.Component {
                </SafeAreaView>
          
                <AdMobBanner
-               bannerSize="smartBannerLandscape"
+               bannerSize="fullBanner"
                adUnitID={this.AdUnitID}
                servePersonalizedAds={true}
-               onAdViewDidReceiveAd = {this.bannerAdReceived}
-               onDidFailToReceiveAdWithError={this.bannerError} />
+                />
               
           </ScrollView>
                   

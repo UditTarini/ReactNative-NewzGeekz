@@ -11,10 +11,13 @@ web-build/
 web-report/
 
 
-Config/apikey.js
+Config/secrets.js
 ztest
 newzgeekz.jks
-app.json
+
 # macOS
 .DS_Store
 
+app.json
+app.json
+Config/secrets.js

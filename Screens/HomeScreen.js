@@ -1,34 +1,31 @@
 import React from 'react';
-import { StyleSheet, Text,StatusBar, AsyncStorage,TouchableOpacity, Image,ScrollView,FlatList, View, SafeAreaView, NativeModules } from 'react-native'
+import { StyleSheet,Text,StatusBar,TouchableOpacity, Image,ScrollView, View, SafeAreaView,  } from 'react-native'
 import HeaderBar from "../Utils/HeaderBar"
+
 import {AdMobBanner} from 'expo-ads-admob';
 import {ad}  from "../Config/secrets";
+
 
 export default class HomeScreen extends React.Component {
   AdUnitID = ad.AD_UNIT_ID01
  
+  
   constructor(props) {
     super(props)
     this.state = {
       catagory: " ",
-            
+    
     }
   }
+
   
-  
+
   setCatagory = async (cat) => {
       
     await this.setState({ catagory: cat })
       
     this.props.navigation.navigate("NewzScreen", { query: this.state.catagory })
  
-  } 
-  
-  bannerError = () => {
-    console.log('banner ad not loading')
-  }
-bannerAdReceived = () => {
-    console.log('banner ad received')
   }
  
 
@@ -72,14 +69,15 @@ bannerAdReceived = () => {
       return (
         <View style={styles.container}>
         <StatusBar hidden />
-          <HeaderBar height={60} fontSize={11} capFontSize={16}/>
+         
+        
+      
+        <HeaderBar height={60} fontSize={11} capFontSize={16}/>
         
         <ScrollView >
         
-         
           <View>
-            <Text style={styles.TextStyle}>
-                Topics</Text>
+            <Text style={styles.TextStyle}>Topics</Text>
           </View>
             
           <SafeAreaView style={styles.TopicsContainer}>
@@ -92,8 +90,7 @@ bannerAdReceived = () => {
           bannerSize="smartBannerLandscape"
           adUnitID={this.AdUnitID}
           servePersonalizedAds={true}
-         
-          onDidFailToReceiveAdWithError={this.bannerError} />
+         />
          
           </ScrollView>
           
@@ -126,7 +123,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 5,
         width: "31.33%",
-       
+              
 
       },
       screenview: {

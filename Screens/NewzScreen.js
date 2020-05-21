@@ -6,10 +6,10 @@ import * as Speech from 'expo-speech';
 import TimeAgo from '../Utils/time';
 
 import HeaderBar from "../Utils/HeaderBar"
-
+import {AdMobBanner} from 'expo-ads-admob';
 
 import { getArticles } from '../FetchData/NewsData';
-import { ScrollView } from 'react-native-gesture-handler';
+
 
 
 YellowBox.ignoreWarnings([
@@ -17,7 +17,7 @@ YellowBox.ignoreWarnings([
 ])
 
 export default class NewzScreen extends React.Component {   
-  
+ 
       constructor(props) {
         super(props);
     
@@ -80,20 +80,23 @@ export default class NewzScreen extends React.Component {
       </View>
     ): (
        
-      <Card >
-      <CardItem scrollEnabled={false}>
-      <TouchableOpacity
-        onPress={() => { this.playNews() }}>
+        <Card >
+        <CardItem scrollEnabled={false}>
+        <TouchableOpacity
+          onPress={() => { this.playNews() }}>
+          
+          <Icon name={this.state.playStatus.toLowerCase()}
+            style={{ fontSize: 23, color: 'red' }} />
+        </TouchableOpacity>
+   
+        <Text >
+                {this.state.playStatus} The News...</Text>
+    
+      </CardItem>
         
-        <Icon name={this.state.playStatus.toLowerCase()}
-          style={{ fontSize: 23, color: 'red' }} />
-      </TouchableOpacity>
- 
-      <Text >
-        {this.state.playStatus} The News...</Text>
-  
-    </CardItem>
-    </Card >
+        </Card>
+     
+   
     
     )
 
@@ -101,21 +104,19 @@ export default class NewzScreen extends React.Component {
     
     let view = this.state.isLoading ? (
       
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',backgroundColor:"white"}}>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',backgroundColor:"#fff"}}>
         <ActivityIndicator
           color="#00f0ff"
           animating={this.state.isLoading}
-          style={ {justifyContent: 'center', alignItems: 'center', marginTop: screenHeight / 2 }}
+          style={ {justifyContent: 'center', alignItems: 'center', marginTop: screenHeight }}
         />
         <Text style={{ marginTop: 10 }} children="Please Wait.." />
-        <View style={{ height: screenHeight / 2 - 100 }}>
-        </View>
+        
+      
       </View>
      
     ) : (
         <View>
- 
-      
           <List
             key={Date.now()}
             dataArray={this.state.data}
@@ -167,13 +168,16 @@ export default class NewzScreen extends React.Component {
                       </Right>
                     </CardItem>
                   </Card>
+                    
                 </TouchableOpacity>
+                
               )
             }}
             keyExtractor={(item, index) => index.toString()}
-            />
-            
-      
+          />
+          <View style={{height:screenHeight/14,backgroundColor:"white"}}></View>
+         
+          
         </View>
       )
      
@@ -183,13 +187,11 @@ export default class NewzScreen extends React.Component {
       <StatusBar hidden />
        <HeaderBar height={65} fontSize={14} capFontSize={23} />
         {playNewsView}
-        <ScrollView>
+        <View>
           {view}
           
-          <View style={{height:100,backgroundColor:"white"}}>
-           
-          </View>
-        </ScrollView>
+        
+        </View>
        
         </View>
     
@@ -198,20 +200,4 @@ export default class NewzScreen extends React.Component {
 }
 
 
-
-const styles = StyleSheet.create({
-
- 
-  playNews: {
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-    shadowColor: "black",
-    elevation:2
-    
-  },
-
-
-
-})
-  
 

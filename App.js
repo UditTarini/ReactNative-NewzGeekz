@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet,StatusBar,Button,AsyncStorage, Text, Image,ScrollView, View, SafeAreaView } from 'react-native';
-
+import {View,Text   } from 'react-native';
+import NetInfo from '@react-native-community/netinfo';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 
@@ -15,10 +15,9 @@ import HomeScreen from "./Screens/HomeScreen"
 
 import NewspaperScreen from "./Screens/NewspaperScreen"
 import WeatherScreen from "./Screens/WeatherScreen"
-
-
 import MenuScreen from "./Screens/MenuScreen"
 
+import NoInternet from "./Utils/NoInternet"
 
 const StackNavigator = createStackNavigator(
   {
@@ -135,10 +134,40 @@ const TabNavigator = createMaterialBottomTabNavigator(
 );
 
 
-const App = createAppContainer(TabNavigator);
-export default App;
+const Navigator = createAppContainer(TabNavigator);
+export default class App extends React.Component{
+  state = {
+    isConnected: false
+  }
+
+  componentDidMount() {
+    NetInfo.addEventListener(state => {
+      console.log(state)
+      this.handleConnectivityChange(state.isConnected) 
+    });
+   
+  }
 
 
 
+  handleConnectivityChange = isConnected => {
+   
+    this.setState({ isConnected:isConnected });
+  }
   
+  render() {
+    return (
+      <View style={{ flex: 1}}>
+      
+      {!this.state.isConnected?<NoInternet />:<Navigator/>}
+
+      </View>       
+
+    )
+   
+  }
+}
+
+
+
 

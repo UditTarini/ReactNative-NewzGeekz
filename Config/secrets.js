@@ -5,5 +5,8 @@ export const api = {
 
 export const ad = {
     AD_UNIT_ID01: "ca-app-pub-4783235474464550/1947219600",
-    AD_UNIT_ID02: "ca-app-pub-4783235474464550/1229922357"
+    AD_UNIT_ID02: "ca-app-pub-4783235474464550/1229922357",
+    AD_UNIT_ID03: "ca-app-pub-4783235474464550/7260477222",
 }
+
+
