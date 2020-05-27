@@ -19,7 +19,7 @@
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": [
-      "**/*"
+      "assets/no.png"
     ],
     "ios": {
       "supportsTablet": true
@@ -32,7 +32,7 @@
         "googleMobileAdsAppId": "ca-app-pub-4783235474464550~1762838035"
       },
       "package": "com.CodeCrafter.NewzGeekz",
-      "versionCode": 2
+      "versionCode": 9
     },
     "description": "Download the NewzGeekz app to get all the latest headlines from worlds leading publishers in one place. "
   }

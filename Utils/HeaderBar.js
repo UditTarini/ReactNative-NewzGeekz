@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { StyleSheet,Text, AsyncStorage,TouchableOpacity, Image,ScrollView,FlatList, View, SafeAreaView, NativeModules } from 'react-native'
-import { Container, Header, Title, Button, Icon } from 'native-base';
+import React from 'react';
+import { StyleSheet,Text, View } from 'react-native'
+
 
 
 export default class HeaderBar extends React.Component {

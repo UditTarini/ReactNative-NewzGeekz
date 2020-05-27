@@ -107,7 +107,7 @@ export default class WeatherScreen extends React.Component {
       
       <View style={styles.container}>
       <StatusBar hidden />
-       <HeaderBar height={25} fontSize={8} capFontSize={12}  />
+      <HeaderBar height={22} fontSize={8} capFontSize={12}  />
         {isLoading ? (
 
           <View style={styles.loadingContainer}>

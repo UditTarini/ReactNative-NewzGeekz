@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
-import { StyleSheet,Text, AsyncStorage,TouchableOpacity, Image,ScrollView,FlatList, View, SafeAreaView, NativeModules } from 'react-native'
+import React from 'react';
+import { StyleSheet, View, Text,Image } from 'react-native'
 import HeaderBar from './HeaderBar'
 
+
+
 export default class NoInternet extends React.Component {
-  constructor(props) {
-    super(props);
-
-
-   
-  }
+ 
   
   render() {
     return (
@@ -17,15 +14,18 @@ export default class NoInternet extends React.Component {
       <View style={styles.noInternet}>
        
           
-      <Image
-      style={styles.TopicsIcon}
-      source={require("../assets/no.png")}/>
-        
+       
+    <Image
+    style={styles.TopicsIcon}
+    source={require("../assets/no.png")}/>
+  
+  
+       
         <Text style={styles.textStyle}>
             Whoops !!
           </Text>
         <Text style={styles.subTexStyle}>Looks like you are offline turn on your internet </Text>  
-          
+       
         </View>
         </View>
        )
@@ -44,21 +44,29 @@ const styles = StyleSheet.create({
   noInternet: {
     flex:1,  
     backgroundColor: 'rgba(52, 52, 52, 0)',
-    
+    margin:10,
     justifyContent: "center",
     alignItems: "center",
-  
+   
     
   },
   textStyle: {
+    marginTop:10,
     fontWeight: "500",
     fontSize: 25,
     color:'#000'
   },
   subTexStyle: {
     fontSize: 14,
-    paddingLeft: 7,
-    padding: 5,
-    color:"grey"
+    fontWeight:"200",
+
+    padding: 7,
+    color: "grey",
+    textAlign: 'center'
+    
+    
    }
 })
+
+
+ 

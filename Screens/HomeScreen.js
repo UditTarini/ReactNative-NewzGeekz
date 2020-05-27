@@ -7,7 +7,7 @@ import {ad}  from "../Config/secrets";
 
 
 export default class HomeScreen extends React.Component {
-  AdUnitID = ad.AD_UNIT_ID01
+
  
   
   constructor(props) {
@@ -69,9 +69,7 @@ export default class HomeScreen extends React.Component {
       return (
         <View style={styles.container}>
         <StatusBar hidden />
-         
         
-      
         <HeaderBar height={60} fontSize={11} capFontSize={16}/>
         
         <ScrollView >
@@ -87,8 +85,9 @@ export default class HomeScreen extends React.Component {
           </SafeAreaView>
       
           <AdMobBanner
+          style={{marginTop:50}}    
           bannerSize="smartBannerLandscape"
-          adUnitID={this.AdUnitID}
+          adUnitID={ad.AD_UNIT_ID01}
           servePersonalizedAds={true}
          />
          
@@ -118,7 +117,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         margin:3,
-        height: 130,
+        height: 135,
         borderColor: "#c1c1c1",
         borderWidth: 1,
         borderRadius: 5,
@@ -131,7 +130,8 @@ const styles = StyleSheet.create({
       },
       TopicsButtontext: {
         color: "#000",
-        fontSize: 12,
+        fontSize: 11,
+        textAlign:"center"
         
       },
       TopicsIcon:{

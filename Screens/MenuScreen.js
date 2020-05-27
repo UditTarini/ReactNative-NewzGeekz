@@ -53,7 +53,7 @@ export default class MenuScreen extends React.Component {
     return (
         <View style={styles.container}>
         <StatusBar hidden />
-        <HeaderBar height={60} fontSize={11} capFontSize={15}/>
+        <HeaderBar height={60} fontSize={11} capFontSize={16}/>
         
         <SafeAreaView >
          

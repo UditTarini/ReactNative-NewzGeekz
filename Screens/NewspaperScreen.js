@@ -6,28 +6,27 @@ import {ad}  from "../Config/secrets";
 
 
 
-
-
 export default class NewspaperScreen extends React.Component {
 
-  AdUnitID = ad.AD_UNIT_ID02
 
   constructor(props){
     super(props)
     this.state={
       source: "",
-    
+
      }
   }
 
+ 
 
   setSource = async (source) => {
-      
-    await this.setState({source:source})
    
+    await this.setState({source:source})
+
     this.props.navigation.navigate("NewzScreen",{query:this.state.source})
     }
   
+
   render() {
       
     const newspaper = new Array();
@@ -54,9 +53,9 @@ export default class NewspaperScreen extends React.Component {
     newspaper[15] = new Array("The Next Web","the-next-web", require("../assets/NewsIcons/TNW.png"),"TC");
          
    
-    newspaper[16] = new Array("Bloomberg","bloomberg", require("../assets/NewsIcons/bloom.png"),"FC");
+    newspaper[16] = new Array("Fortune","fortune", require("../assets/NewsIcons/fortune.jpg"),"FC");
     newspaper[17] = new Array("Business Insider","business-insider", require("../assets/NewsIcons/bi.jpg"),"FC");
-    newspaper[18] = new Array("CNBC", "cnbc", require("../assets/NewsIcons/cnbc.jpg"),"FC");
+    newspaper[18] = new Array("CNBC", "cnbc.com", require("../assets/NewsIcons/cnbc.jpg"),"FC");
         
       
     const NationalArr = []
@@ -75,7 +74,7 @@ export default class NewspaperScreen extends React.Component {
                 
             <TouchableOpacity
             
-              key={ Date.now() }
+              key={ Math.floor(Math.random() * Math.floor(Math.random() * Date.now())) }
               style={styles.newspaperButton}
               onPress={() => { this.setSource(newspaper[i][1]) }}  >
               <Image
@@ -91,7 +90,7 @@ export default class NewspaperScreen extends React.Component {
           InternationalArr.push(
                 
             <TouchableOpacity
-              key={ Date.now() }
+              key={ Math.floor(Math.random() * Math.floor(Math.random() * Date.now())) }
               style={styles.newspaperButton}
               onPress={() => { this.setSource(newspaper[i][1]) }}  >
               <Image
@@ -106,7 +105,7 @@ export default class NewspaperScreen extends React.Component {
           TechArr.push(
                 
             <TouchableOpacity
-              key={ Date.now() }
+              key={ Math.floor(Math.random() * Math.floor(Math.random() * Date.now())) }
               style={styles.newspaperButton}
               onPress={() => { this.setSource(newspaper[i][1]) }}  >
               <Image
@@ -120,7 +119,7 @@ export default class NewspaperScreen extends React.Component {
           FinanceArr.push(
                 
             <TouchableOpacity
-              key={ Date.now() }
+              key={ Math.floor(Math.random() * Math.floor(Math.random() * Date.now())) }
               style={styles.newspaperButton}
               onPress={() => { this.setSource(newspaper[i][1]) }}  >
               <Image
@@ -144,16 +143,17 @@ export default class NewspaperScreen extends React.Component {
           
     return (
       <View style={styles.container}>
+            
              <StatusBar hidden />
              <HeaderBar height={60} fontSize={11} capFontSize={16}/>
-
+             
              <ScrollView >
                
                 
                <View>
                  <Text
-                   style={styles.TextStyle}>
-                   Newspaper</Text>
+                   style={styles.TextStyle}> Newspaper</Text>
+                   
                </View>
 
                <Text style={styles.subTexStyle} >Indian</Text>           
@@ -190,7 +190,7 @@ export default class NewspaperScreen extends React.Component {
          
                <AdMobBanner
                bannerSize="fullBanner"
-               adUnitID={this.AdUnitID}
+               adUnitID={ad.AD_UNIT_ID02}
                servePersonalizedAds={true}
                 />
               
@@ -224,7 +224,7 @@ export default class NewspaperScreen extends React.Component {
            alignItems: "center",
            justifyContent: "center",
            margin:3,
-           height: 130,
+           height: 135,
            borderColor: "#c1c1c1",
            borderWidth: 1,
            borderRadius: 5,
@@ -240,7 +240,8 @@ export default class NewspaperScreen extends React.Component {
          },
          newspaperButtontext: {
            paddingHorizontal:15,
-           fontSize: 12,
+           fontSize: 11,
+           textAlign: 'center'
            
          },
          newspaperIcon:{

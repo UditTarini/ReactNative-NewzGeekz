@@ -8,7 +8,7 @@ export async function getArticles(query) {
 
     const cat = ['Fashion', 'Travel', 'Lifestyle']
     const cat2 = ['','Sports','Business','Science','Entertainment','Technology','General']
-    const paper = ['news18.com','indianexpress.com','asianage.com','hindustantimes.com','wired.com']
+    const paper = ['news18.com','indianexpress.com','asianage.com','hindustantimes.com','wired.com','cnbc.com','bloomberg.com']
     query = (query == "Top Headlines") ? ("General") : (query)
   
   
@@ -24,7 +24,7 @@ export async function getArticles(query) {
     }
     else if (cat2.indexOf(query) > -1) {
       articles = await fetch(`${articles_url}/top-headlines?country=${country_code}&category=${query}&apiKey=${news_api}`)
-    }
+  0  }
     else if (paper.indexOf(query) > -1) {
       articles = await fetch(`${articles_url}/everything?language=en&domains=${query}&apiKey=${news_api}`)
     }

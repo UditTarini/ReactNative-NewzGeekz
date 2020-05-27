@@ -4,7 +4,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export const weatherConditions = {
   Rain: {
-    img: 'https://images.unsplash.com/photo-1525087740718-9e0f2c58c7ef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+    img: 'https://firebasestorage.googleapis.com/v0/b/react-fc214.appspot.com/o/rain.jpg?alt=media&token=d4acff63-1d47-4691-b34e-87323efc92ab',
     color: '#005BEA',
     title: 'Raining',
     subtitle: 'Grab a cup of coffee',
@@ -12,21 +12,21 @@ export const weatherConditions = {
     
   },
   Clear: {
-    img: 'https://images.unsplash.com/photo-1582122405457-39754d719c9d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+    img: 'https://firebasestorage.googleapis.com/v0/b/react-fc214.appspot.com/o/clear.jpg?alt=media&token=1235bd0c-15a1-490e-be7d-4e6eaa65c4d6',
     color: '#f7f033',
     title: 'Sunny',
     subtitle: 'Wear sunglasses !',
     icon: 'weather-sunny'
   },
   Thunderstorm: {
-    img: 'https://images.unsplash.com/photo-1541746852648-0f6fdebb23d7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+    img: 'https://firebasestorage.googleapis.com/v0/b/react-fc214.appspot.com/o/thunder.jpg?alt=media&token=eccfaed1-face-46c4-b2af-ea15f6b989b7',
     color: '#525252',
     title: 'A Storm is coming',
     subtitle: 'Oops better get inside !',
     icon: 'weather-lightning'
   },
   Clouds: {
-    img: 'https://images.unsplash.com/photo-1542272201-b1ca555f8505?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+    img: 'https://firebasestorage.googleapis.com/v0/b/react-fc214.appspot.com/o/cloud.jpg?alt=media&token=74c11f26-60e7-4b9a-99e5-f17487d4b032',
     color: '#403861',
     title: 'Cloudy',
     subtitle: 'With a chance of meatballs',
@@ -34,28 +34,28 @@ export const weatherConditions = {
   },
 
   Snow: {
-    img: 'https://images.unsplash.com/photo-1520580266137-41b83d2c3b32?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+    img: 'https://firebasestorage.googleapis.com/v0/b/react-fc214.appspot.com/o/snow.jpg?alt=media&token=c50a4829-afc0-430d-bf20-c32a8cf384a6',
     color: '#00d2ff',
     title: 'Snow',
     subtitle: 'Get out and build a snowman !',
     icon: 'weather-snowy'
   },
   Drizzle: {
-    img: 'https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+    img: 'https://firebasestorage.googleapis.com/v0/b/react-fc214.appspot.com/o/drizzle.jpg?alt=media&token=0125102b-402f-498a-85e6-4d2e7b6650fe',
     color: '#076585',
     title: 'Drizzle',
     subtitle: 'It\'s partially raining',
     icon: 'weather-hail'
   },
   Haze: {
-    img: 'https://images.unsplash.com/photo-1533708985023-a9726305e9c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+    img: 'https://firebasestorage.googleapis.com/v0/b/react-fc214.appspot.com/o/haze.jpg?alt=media&token=2d99ecea-3600-43d4-88dc-5b4125c56c5c',
     color: '#66A6FF',
     title: 'Haze',
     subtitle: 'May be some dust is there !',
     icon: 'weather-hail'
   },
   Mist: {
-    img: 'https://images.unsplash.com/photo-1534761166353-857a5a4b5c8c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+    img: 'https://firebasestorage.googleapis.com/v0/b/react-fc214.appspot.com/o/mist.jpg?alt=media&token=3b6dbad8-cdae-4585-a93a-85d2ba2428fb',
     color: '#3CD3AD',
     title: 'Mist',
     subtitle: "just some microscopic water droplets",

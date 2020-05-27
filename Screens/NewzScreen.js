@@ -1,14 +1,15 @@
 import React from 'react';
-import { StyleSheet,Alert,StatusBar,TouchableOpacity , Dimensions ,ActivityIndicator,Text,Share,YellowBox,  Image, View} from 'react-native';
+import { Alert,StatusBar,TouchableOpacity , Dimensions ,ActivityIndicator,Text,Share,YellowBox,  Image, View, BackHandler} from 'react-native';
 import {List, Card, CardItem,Icon, Left, Body, Right } from 'native-base';
 
 import * as Speech from 'expo-speech';
 import TimeAgo from '../Utils/time';
 
 import HeaderBar from "../Utils/HeaderBar"
-import {AdMobBanner} from 'expo-ads-admob';
+
 
 import { getArticles } from '../FetchData/NewsData';
+
 
 
 
@@ -39,7 +40,7 @@ export default class NewzScreen extends React.Component {
         getArticles(catagory).then(data => {
           
           for (let i = 0; i < data.length; i++){
-            // console.log(data[i].title)
+            
             titles.push(data[i].title)
           }this.setState({
             isLoading: false,
@@ -52,7 +53,18 @@ export default class NewzScreen extends React.Component {
         }
         )
       }
+
+      componentDidMount() {
+         
+            Speech.isSpeakingAsync().then((data)=>data?Speech.stop():null)
+    
+       
+      }
       
+     
+    
+
+
   playNews = () => {
     if(this.state.playStatus == "Play"){
       for(let i = 0; i < titles.length; i++)
@@ -79,7 +91,7 @@ export default class NewzScreen extends React.Component {
       
       </View>
     ): (
-       
+        
         <Card >
         <CardItem scrollEnabled={false}>
         <TouchableOpacity
@@ -118,7 +130,7 @@ export default class NewzScreen extends React.Component {
     ) : (
         <View>
           <List
-            key={Date.now()}
+            key={Math.floor(Math.random() * Math.floor(Math.random() * Date.now()))}
             dataArray={this.state.data}
             renderRow={(item) => {
               return (
@@ -185,7 +197,7 @@ export default class NewzScreen extends React.Component {
     return (
       <View  style={{backgroundColor:"white"}}>
       <StatusBar hidden />
-       <HeaderBar height={65} fontSize={14} capFontSize={23} />
+      <HeaderBar height={60} fontSize={11} capFontSize={16}/>
         {playNewsView}
         <View>
           {view}
